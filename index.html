@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form</title>
+
+  <style>
+    body { font-family: Arial; background:#f3f6fb; padding:40px; }
+    .contact-box {
+      max-width:460px;
+      margin:auto;
+      background:#fff;
+      padding:25px;
+      border-radius:8px;
+      box-shadow:0 4px 20px rgba(0,0,0,.08);
+    }
+    .field { margin-bottom:15px; }
+    label { font-weight:600; margin-bottom:5px; display:block; }
+    input, textarea {
+      width:100%; padding:10px; border:1px solid #ccc;
+      border-radius:5px; font-size:15px;
+    }
+    button {
+      width:100%; padding:12px;
+      border:none; border-radius:6px;
+      background:#0066ff; color:#fff; font-size:16px; cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="contact-box">
+  <h2>Contact Us</h2>
+
+  <form id="contactForm">
+    <div class="field">
+      <label>Your Name</label>
+      <input type="text" name="name" required>
+    </div>
+
+    <div class="field">
+      <label>Your Email</label>
+      <input type="email" name="email" required>
+    </div>
+
+    <div class="field">
+      <label>Your Message</label>
+      <textarea name="message" rows="4" required></textarea>
+    </div>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <p id="formStatus" style="margin-top:15px; font-weight:600;"></p>
+</div>
+
+
+<script>
+const GOOGLE_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzuNKpDrwt9JUzQmFNnet8KjqwYlQiOqDJ2liNkTS3k882VarNc4mpv7wcWAFzx0hba/exec";
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const fd = new FormData(form);
+  const data = {};
+
+  fd.forEach((v, k) => data[k] = v);
+  data.timestamp = new Date().toISOString();
+
+  document.getElementById("formStatus").innerHTML = "Sending...";
+
+  fetch(GOOGLE_WEBAPP_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    form.reset();
+    document.getElementById("formStatus").innerHTML = "Message sent successfully!";
+  })
+  .catch(err => {
+    document.getElementById("formStatus").innerHTML = "Something went wrong.";
+    console.error(err);
+  });
+});
+</script>
+
+</body>
+</html>
