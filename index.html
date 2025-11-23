@@ -30,23 +30,124 @@
 <body>
 
 <div class="contact-box">
-  <h2>Contact Us</h2>
+  <h2>Plots Profile</h2>
 
   <form id="contactForm">
+  
+<!-- A. Your Good Name -->
     <div class="field">
       <label>Your Name</label>
       <input type="text" name="name" required>
     </div>
 
+<!-- B. Email -->
     <div class="field">
       <label>Your Email</label>
       <input type="email" name="email" required>
     </div>
+    <!-- 1. Plot Location -->
+<div class="field">
+  <label>Plot Location (Google Maps Pin)</label>
+  <input type="text" name="plot_location" required>
+</div>
 
-    <div class="field">
-      <label>Your Message</label>
-      <textarea name="message" rows="4" required></textarea>
-    </div>
+<!-- 2. Plot Size -->
+<div class="field">
+  <label>Plot Size (sq ft or sq yards)</label>
+  <input type="number" name="plot_size" required>
+</div>
+
+<!-- 3. Plot Type -->
+<div class="field">
+  <label>Plot Type</label>
+  <select name="plot_type" required>
+    <option>Residential</option>
+    <option>Commercial</option>
+    <option>Agricultural</option>
+  </select>
+</div>
+
+<!-- 4. Facing -->
+<div class="field">
+  <label>Facing</label>
+  <select name="facing">
+    <option>East</option>
+    <option>West</option>
+    <option>North</option>
+    <option>South</option>
+  </select>
+</div>
+
+<!-- 5. Road Width -->
+<div class="field">
+  <label>Road Width (ft)</label>
+  <input type="number" name="road_width">
+</div>
+
+<!-- 6. Asking Price -->
+<div class="field">
+  <label>Seller Asking Price (₹)</label>
+  <input type="number" name="asking_price" required>
+</div>
+
+<!-- 7. Ownership Document -->
+<div class="field">
+  <label>Ownership Document Type</label>
+  <select name="document_type">
+    <option>Registry</option>
+    <option>GPA</option>
+    <option>Leasehold</option>
+    <option>Power of Attorney</option>
+  </select>
+</div>
+
+<!-- 8. Layout Approval -->
+<div class="field">
+  <label>Layout Approval</label>
+  <select name="layout_approval">
+    <option>RERA</option>
+    <option>DTCP</option>
+    <option>No Approval</option>
+  </select>
+</div>
+
+<!-- 9. Water/Electricity -->
+<div class="field">
+  <label>Basic Utilities Available?</label>
+  <select name="utilities">
+    <option>Water + Electricity</option>
+    <option>Only Water</option>
+    <option>Only Electricity</option>
+    <option>None</option>
+  </select>
+</div>
+
+<!-- 10. Flood / Waterlogging -->
+<div class="field">
+  <label>Flood / Waterlogging Issue?</label>
+  <select name="flood_issue">
+    <option>No</option>
+    <option>Yes</option>
+  </select>
+</div>
+
+<!-- 11. Purpose of Buying -->
+<div class="field">
+  <label>Purpose of Purchase</label>
+  <select name="purpose">
+    <option>Investment</option>
+    <option>House Construction</option>
+    <option>Farmhouse</option>
+    <option>Commercial Use</option>
+  </select>
+</div>
+
+<!-- 12. Additional Notes (Optional) -->
+<div class="field">
+  <label>Any Concerns or Notes?</label>
+  <textarea name="notes"></textarea>
+</div>
+
 
     <button type="submit">Send Message</button>
   </form>
