@@ -1,282 +1,750 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Artist Vault — Premium Sketchbooks</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Artist Vault — Premium Sketchbooks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-/* ---------- FONT ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap');
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0f19;
+      --accent: #00a2ff;
+      --accent-soft: rgba(0, 162, 255, 0.16);
+      --text-main: #ffffff;
+      --text-muted: #b9c0d4;
+      --border-soft: rgba(255, 255, 255, 0.06);
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.8);
+    }
 
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body{
-  background:#06080d;
-  color:white;
-  font-family:'Montserrat', sans-serif;
-  line-height:1.6;
-}
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #061833 0, #020308 40%);
+      color: var(--text-main);
+    }
 
-/* ---------- HERO ---------- */
-.hero{
-  padding:100px 10%;
-  background:
-   radial-gradient(circle at top left, rgba(0,75,255,0.25), transparent),
-   linear-gradient(180deg,#000000,#06080d);
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.hero h1{
-  font-size:3rem;
-  font-weight:800;
-  max-width:800px;
-}
+    /* -------------------- LAYOUT WRAPPER -------------------- */
 
-.hero span{
-  color:#00a2ff;
-}
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-.hero p{
-  margin-top:20px;
-  max-width:700px;
-  color:#dddddd;
-  font-size:1.1rem;
-}
+    main {
+      flex: 1;
+    }
 
-/* ---------- CTA ---------- */
-.cta{
-  margin-top:35px;
-  display:inline-block;
-  padding:15px 35px;
-  background:#00a2ff;
-  color:#000;
-  font-weight:700;
-  border-radius:50px;
-  text-decoration:none;
-  transition:all 0.3s ease;
-}
+    section {
+      padding: 64px 18px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
 
-.cta:hover{
-  background:#0080ff;
-  transform:scale(1.05);
-}
+    @media (min-width: 768px) {
+      section {
+        padding: 80px 32px;
+      }
+    }
 
-/* ---------- TRUST ---------- */
-.trust{
-  margin-top:40px;
-  font-size:0.9rem;
-  letter-spacing:1px;
-  color:#aaaaaa;
-}
+    /* -------------------- HERO -------------------- */
 
-/* ---------- COLLECTION ---------- */
-.collection{
-  padding:80px 10%;
-  background:#0b0f19;
-}
+    .hero {
+      padding-top: 80px;
+    }
 
-.collection h2{
-  text-align:center;
-  margin-bottom:60px;
-  font-size:2.4rem;
-}
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-  gap:30px;
-}
+    @media (min-width: 900px) {
+      .hero-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 48px;
+      }
+    }
 
-.book{
-  background:#03050a;
-  border:1px solid rgba(0,162,255,0.2);
-  padding:30px 24px;
-  border-radius:22px;
-  transition:all 0.3s ease;
-  box-shadow:0px 0px 20px rgba(0,162,255,0.06);
-}
+    .hero-text {
+      flex: 1.1;
+    }
 
-.book:hover{
-  transform:translateY(-8px);
-  box-shadow:0px 0px 30px rgba(0,162,255,0.25);
-}
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
 
-.book h3{
-  margin-bottom:15px;
-  color:#00a2ff;
-}
+    .hero-title {
+      font-size: 2.2rem;
+      line-height: 1.18;
+      font-weight: 800;
+    }
 
-.book p{
-  font-size:.95rem;
-  color:#ccc;
-  margin-bottom:20px;
-}
+    .hero-title span {
+      background: linear-gradient(120deg, #08d0ff, #3f8cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.btn{
-  display:inline-block;
-  width:100%;
-  padding:12px;
-  background:#00a2ff;
-  color:black;
-  font-weight:700;
-  border-radius:50px;
-  text-decoration:none;
-  text-align:center;
-  transition:.2s all ease;
-}
+    .hero-subtitle {
+      margin-top: 14px;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
 
-.btn:hover{
-  background:#0080ff;
-}
+    .hero-cta-row {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
 
-/* ---------- AUTHORITY ---------- */
-.authority{
-  padding:100px 10%;
-  background:#06080d;
-}
+    .btn-primary {
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #00a2ff, #59c3ff);
+      color: #021014;
+      font-weight: 700;
+      font-size: 0.96rem;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(0, 162, 255, 0.55);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.authority h2{
-  font-size:2.4rem;
-  margin-bottom:20px;
-}
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(0, 162, 255, 0.7);
+    }
 
-.authority span{
-  color:#00a2ff;
-}
+    .btn-secondary-link {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      text-decoration: underline;
+      text-decoration-color: rgba(185, 192, 212, 0.4);
+      text-underline-offset: 4px;
+    }
 
-.authority p{
-  max-width:850px;
-  font-size:1.05rem;
-  color:#dddddd;
-}
+    .hero-badges {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
 
-/* ---------- FOOTER ---------- */
-footer{
-  background:black;
-  padding:25px;
-  text-align:center;
-  color:#666;
-  font-size:0.8rem;
-}
-</style>
+    .pill {
+      padding: 4px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(12px);
+    }
+
+    /* -------------------- HERO GALLERY (VISUALS) -------------------- */
+
+    .hero-gallery-wrapper {
+      flex: 1;
+      margin-top: 14px;
+    }
+
+    @media (min-width: 900px) {
+      .hero-gallery-wrapper {
+        margin-top: 0;
+      }
+    }
+
+    .hero-gallery {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 16px 4px 10px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .hero-gallery::-webkit-scrollbar {
+      height: 4px;
+    }
+    .hero-gallery::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.26);
+      border-radius: 999px;
+    }
+
+    .hero-book-card {
+      scroll-snap-align: start;
+      flex: 0 0 68%;
+      max-width: 260px;
+      background: radial-gradient(circle at top, rgba(0, 162, 255, 0.25), #040611);
+      border-radius: var(--radius-xl);
+      padding: 12px 12px 16px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .hero-book-card {
+        flex: 0 0 210px;
+      }
+    }
+
+    .hero-book-image {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #020308;
+      border: 1px solid rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-book-image img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .hero-book-card:hover img {
+      transform: scale(1.05);
+      filter: saturate(1.15) contrast(1.02);
+    }
+
+    .hero-book-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-book-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .hero-book-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* -------------------- BOOK COLLECTION -------------------- */
+
+    .collection {
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .section-heading p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    @media (min-width: 640px) {
+      .book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 980px) {
+      .book-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .book {
+      background: radial-gradient(circle at top left, var(--accent-soft), #020308);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 14px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .book-cover {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #020308;
+      border: 1px solid rgba(0, 0, 0, 0.7);
+    }
+
+    .book-cover img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .book:hover .book-cover img {
+      transform: scale(1.04);
+      filter: saturate(1.15);
+    }
+
+    .book-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .book-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .book-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .book-cta {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-book {
+      flex: 1;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #020308;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+
+    .btn-book:hover {
+      transform: translateY(-1px);
+      background: #0594eb;
+    }
+
+    .book-pages {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* -------------------- AUTHORITY / STORY -------------------- */
+
+    .authority {
+      background: var(--bg);
+    }
+
+    .authority-inner {
+      max-width: 820px;
+    }
+
+    .authority h2 {
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+
+    .authority span {
+      color: var(--accent);
+    }
+
+    .authority p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* -------------------- FOOTER -------------------- */
+
+    footer {
+      padding: 20px 18px 26px;
+      background: #020308;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.76rem;
+      color: #7a8194;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="page">
+    <main>
+      <!-- ============================= HERO ============================= -->
+      <section class="hero" id="top">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <div class="eyebrow">Artist Vault · Sketchbook Series</div>
+            <h1 class="hero-title">
+              Unleash Your <span>Creative Power</span><br />
+              with Premium Sketchbooks
+            </h1>
+            <p class="hero-subtitle">
+              See your ideas before you even open the book. Explore a curated
+              series of sketchbooks built for students, hobbyists, designers and
+              professionals who want their art to look as premium as it feels.
+            </p>
 
-<!-- ================================= HERO ================================= -->
+            <div class="hero-cta-row">
+              <a href="#collection" class="btn-primary">
+                Explore all sketchbooks
+                <span>↘</span>
+              </a>
+              <a href="#collection" class="btn-secondary-link">
+                Scroll to the visual library
+              </a>
+            </div>
 
-<div class="hero">
+            <div class="hero-badges">
+              <span class="pill">⚡ Amazon KDP Published</span>
+              <span class="pill">✏️ Optimised for daily sketching</span>
+              <span class="pill">🖤 Black · Blue · White aesthetic</span>
+            </div>
+          </div>
 
-<h1>
-Unleash Your <span>Creative Power</span><br>
-with Premium Artist Sketchbooks
-</h1>
+          <!-- Hero gallery of key book covers (VISUALS) -->
+          <div class="hero-gallery-wrapper">
+            <div class="hero-gallery">
+              <!-- NOTE: Replace src values with your actual cover image files -->
+              <article class="hero-book-card">
+                <div class="hero-book-image">
+                  <img
+                    src="covers/classic-artist-sketchbook.jpg"
+                    alt="Classic Artist Sketchbook cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="hero-book-meta">
+                  <div class="hero-book-title">Classic Artist Sketchbook</div>
+                  <div class="hero-book-tag">Clean layout · Everyday drawing</div>
+                </div>
+              </article>
 
-<p>
-Designed for creators who take their art seriously. 
-Our sketchbooks are trusted by students, hobbyists, designers & professionals worldwide —
-turning imagination into mastery with every page.
-</p>
+              <article class="hero-book-card">
+                <div class="hero-book-image">
+                  <img
+                    src="covers/pro-drawing-vault.jpg"
+                    alt="Professional Drawing Vault cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="hero-book-meta">
+                  <div class="hero-book-title">Professional Drawing Vault</div>
+                  <div class="hero-book-tag">
+                    Shading · Detailing · Sharp lines
+                  </div>
+                </div>
+              </article>
 
-<a href="#collection" class="cta">Explore The Collection</a>
+              <article class="hero-book-card">
+                <div class="hero-book-image">
+                  <img
+                    src="covers/creative-daily-pad.jpg"
+                    alt="Creative Daily Sketch Pad cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="hero-book-meta">
+                  <div class="hero-book-title">Creative Daily Sketch Pad</div>
+                  <div class="hero-book-tag">Build consistent sketch habits</div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<div class="trust">
-⚡ Trusted by 10,000+ artists • Premium Paper Quality • Amazon Verified Books
-</div>
+      <!-- ========================= COLLECTION ========================= -->
+      <section class="collection" id="collection">
+        <div class="section-heading">
+          <h2>Our Best-Selling Sketchbook Collection</h2>
+          <p>
+            Every cover is designed to inspire, every page engineered for
+            progress. Tap on any book to jump straight to Amazon and start
+            sketching.
+          </p>
+        </div>
 
-</div>
+        <div class="book-grid">
+          <!-- 1 -->
+          <article class="book">
+            <div class="book-cover">
+              <!-- Replace with real cover -->
+              <img
+                src="covers/classic-artist-sketchbook.jpg"
+                alt="Classic Artist Sketchbook cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Classic Artist Sketchbook</div>
+              <div class="book-subtitle">
+                Minimalist layout for long-form artwork & daily practice.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S62GKYQ"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">8.25&quot; × 11&quot; · 240 pages</div>
+              </div>
+            </div>
+          </article>
 
+          <!-- 2 -->
+          <article class="book">
+            <div class="book-cover">
+              <img
+                src="covers/pro-drawing-vault.jpg"
+                alt="Professional Drawing Vault cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Professional Drawing Vault</div>
+              <div class="book-subtitle">
+                Built for shading, cross-hatching, outlines & advanced study.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SDCQCBT"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">Thick white paper</div>
+              </div>
+            </div>
+          </article>
 
-<!-- ============================== COLLECTION =============================== -->
+          <!-- 3 -->
+          <article class="book">
+            <div class="book-cover">
+              <img
+                src="covers/creative-daily-pad.jpg"
+                alt="Creative Daily Sketch Pad cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Creative Daily Sketch Pad</div>
+              <div class="book-subtitle">
+                Commit to 10–20 minutes of sketching every single day.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBNJXH8"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">Perfect for routines</div>
+              </div>
+            </div>
+          </article>
 
-<div id="collection" class="collection">
+          <!-- 4 -->
+          <article class="book">
+            <div class="book-cover">
+              <img
+                src="covers/modern-art-workbook.jpg"
+                alt="Modern Art Workbook cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Modern Art Workbook</div>
+              <div class="book-subtitle">
+                Ideal for design students, illustrators, concept artists.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SL19Q6M"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">Concept-ready layout</div>
+              </div>
+            </div>
+          </article>
 
-<h2>🔥 Our Best-Selling Sketchbook Series</h2>
+          <!-- 5 -->
+          <article class="book">
+            <div class="book-cover">
+              <img
+                src="covers/minimalist-edition.jpg"
+                alt="Minimalist Sketch Edition cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Minimalist Sketch Edition</div>
+              <div class="book-subtitle">
+                Crisp, distraction-free design to keep focus on your lines.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBX18BP"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">Matte cover · Clean vibe</div>
+              </div>
+            </div>
+          </article>
 
-<div class="grid">
+          <!-- 6 -->
+          <article class="book">
+            <div class="book-cover">
+              <img
+                src="covers/art-practice-notebook.jpg"
+                alt="Art Practice Notebook cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Art Practice Notebook</div>
+              <div class="book-subtitle">
+                Drills, experiments, thumbnails & rough exploration pages.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P8RN"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">Skill-building companion</div>
+              </div>
+            </div>
+          </article>
 
-<div class="book">
-<h3>Classic Artist Sketchbook</h3>
-<p>Minimalist format for daily creativity & long-form artwork.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S62GKYQ" target="_blank">Buy on Amazon</a>
-</div>
+          <!-- 7 -->
+          <article class="book">
+            <div class="book-cover">
+              <img
+                src="covers/precision-drawing-book.jpg"
+                alt="Precision Drawing Book cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Precision Drawing Book</div>
+              <div class="book-subtitle">
+                Great for line practice, perspective & architectural sketches.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S64XY6G"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">Clean alignment · Structure</div>
+              </div>
+            </div>
+          </article>
 
-<div class="book">
-<h3>Professional Drawing Vault</h3>
-<p>High-quality pages suited for shading, detailing and outlining.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SDCQCBT" target="_blank">Buy on Amazon</a>
-</div>
+          <!-- 8 -->
+          <article class="book">
+            <div class="book-cover">
+              <img
+                src="covers/creative-journal-vault.jpg"
+                alt="Creative Journal Vault cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="book-body">
+              <div class="book-title">Creative Journal Vault</div>
+              <div class="book-subtitle">
+                Combine sketches, notes, ideas & visual journaling in one place.
+              </div>
+              <div class="book-cta">
+                <a
+                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P66T"
+                  target="_blank"
+                  class="btn-book"
+                  >Buy on Amazon</a
+                >
+                <div class="book-pages">Hybrid art + journaling</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
-<div class="book">
-<h3>Creative Daily Sketch Pad</h3>
-<p>Build consistency with everyday sketching mastery.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBNJXH8" target="_blank">Buy on Amazon</a>
-</div>
+      <!-- ========================= AUTHORITY ========================= -->
+      <section class="authority">
+        <div class="authority-inner">
+          <h2>Built For <span>Serious Artists</span>, Not Casual Notebooks</h2>
+          <p>
+            Most sketchbooks are random stationery. Artist Vault is built as a
+            visual system. Covers that speak your style. Page layouts that
+            support real growth. Binding, texture and format tuned for creators
+            who want to level up — not just doodle.
+            <br /><br />
+            Each book in this collection is part of a bigger story: your
+            portfolio, your practice, your next opportunity. Choose the one that
+            matches your current season, and let the pages pull better art out
+            of you — one sketch at a time.
+          </p>
+        </div>
+      </section>
+    </main>
 
-<div class="book">
-<h3>Modern Art Workbook</h3>
-<p>Great for concept designers, students & illustrators.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SL19Q6M" target="_blank">Buy on Amazon</a>
-</div>
-
-<div class="book">
-<h3>Minimalist Sketch Edition</h3>
-<p>Premium aesthetic with a distraction-free drawing experience.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBX18BP" target="_blank">Buy on Amazon</a>
-</div>
-
-<div class="book">
-<h3>Art Practice Notebook</h3>
-<p>Daily drills & ideation base for improving skill fast.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P8RN" target="_blank">Buy on Amazon</a>
-</div>
-
-<div class="book">
-<h3>Precision Drawing Book</h3>
-<p>Perfect for line practice & architectural sketching.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S64XY6G" target="_blank">Buy on Amazon</a>
-</div>
-
-<div class="book">
-<h3>Creative Journal Vault</h3>
-<p>Mix of sketching, concepts & freehand expressions.</p>
-<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P66T" target="_blank">Buy on Amazon</a>
-</div>
-
-</div>
-</div>
-
-
-<!-- ============================== AUTHORITY ================================ -->
-
-<div class="authority">
-
-<h2>
-Built For <span>Serious Artists</span>, Not Casual Notebooks
-</h2>
-
-<p>
-Most sketchbooks are mass-produced with zero design thinking.
-Our books are intentionally engineered for artistic growth — 
-page flow, spacing, binding strength, durability, and texture quality —
-all selected to help artists perform at their best.
-
-You don’t just sketch in our books — 
-you <b>build your artistic identity.</b>
-
-<br><br>
-🎯 Trusted by students, educators, freelance illustrators and professionals across UK & USA markets.
-</p>
-
-</div>
-
-<footer>
-© 2025 • Artist Vault Sketchbooks | Official KDP Partner Collection
-</footer>
-
+    <footer>
+      © 2025 · Artist Vault Sketchbooks · Amazon KDP Collection
+    </footer>
+  </div>
 </body>
 </html>
