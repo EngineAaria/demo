@@ -1,448 +1,282 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plot Profile Form</title>
+<meta charset="UTF-8">
+<title>Artist Vault — Premium Sketchbooks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+/* ---------- FONT ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap');
 
-    body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    .contact-box {
-      max-width: 550px;
-      width: 100%;
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s ease-out;
-    }
+body{
+  background:#06080d;
+  color:white;
+  font-family:'Montserrat', sans-serif;
+  line-height:1.6;
+}
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+/* ---------- HERO ---------- */
+.hero{
+  padding:100px 10%;
+  background:
+   radial-gradient(circle at top left, rgba(0,75,255,0.25), transparent),
+   linear-gradient(180deg,#000000,#06080d);
+}
 
-    h2 {
-      font-size: 32px;
-      font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 10px;
-      text-align: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+  max-width:800px;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 30px;
-      font-size: 14px;
-    }
+.hero span{
+  color:#00a2ff;
+}
 
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #667eea;
-      margin-top: 25px;
-      margin-bottom: 15px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #f0f0f0;
-    }
+.hero p{
+  margin-top:20px;
+  max-width:700px;
+  color:#dddddd;
+  font-size:1.1rem;
+}
 
-    .section-title:first-of-type {
-      margin-top: 0;
-    }
+/* ---------- CTA ---------- */
+.cta{
+  margin-top:35px;
+  display:inline-block;
+  padding:15px 35px;
+  background:#00a2ff;
+  color:#000;
+  font-weight:700;
+  border-radius:50px;
+  text-decoration:none;
+  transition:all 0.3s ease;
+}
 
-    .field { 
-      margin-bottom: 20px;
-      position: relative;
-    }
+.cta:hover{
+  background:#0080ff;
+  transform:scale(1.05);
+}
 
-    label { 
-      font-weight: 600;
-      margin-bottom: 8px;
-      display: block;
-      color: #333;
-      font-size: 14px;
-      transition: color 0.3s ease;
-    }
+/* ---------- TRUST ---------- */
+.trust{
+  margin-top:40px;
+  font-size:0.9rem;
+  letter-spacing:1px;
+  color:#aaaaaa;
+}
 
-    input, textarea, select {
-      width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: inherit;
-      transition: all 0.3s ease;
-      background: #fafafa;
-    }
+/* ---------- COLLECTION ---------- */
+.collection{
+  padding:80px 10%;
+  background:#0b0f19;
+}
 
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: #667eea;
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-    }
+.collection h2{
+  text-align:center;
+  margin-bottom:60px;
+  font-size:2.4rem;
+}
 
-    input:focus + label, 
-    textarea:focus + label, 
-    select:focus + label {
-      color: #667eea;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:30px;
+}
 
-    select {
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
-    }
+.book{
+  background:#03050a;
+  border:1px solid rgba(0,162,255,0.2);
+  padding:30px 24px;
+  border-radius:22px;
+  transition:all 0.3s ease;
+  box-shadow:0px 0px 20px rgba(0,162,255,0.06);
+}
 
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
+.book:hover{
+  transform:translateY(-8px);
+  box-shadow:0px 0px 30px rgba(0,162,255,0.25);
+}
 
-    .required-star {
-      color: #e74c3c;
-      margin-left: 3px;
-    }
+.book h3{
+  margin-bottom:15px;
+  color:#00a2ff;
+}
 
-    button {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 10px;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    }
+.book p{
+  font-size:.95rem;
+  color:#ccc;
+  margin-bottom:20px;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    }
+.btn{
+  display:inline-block;
+  width:100%;
+  padding:12px;
+  background:#00a2ff;
+  color:black;
+  font-weight:700;
+  border-radius:50px;
+  text-decoration:none;
+  text-align:center;
+  transition:.2s all ease;
+}
 
-    button:active {
-      transform: translateY(0);
-    }
+.btn:hover{
+  background:#0080ff;
+}
 
-    button:disabled {
-      background: linear-gradient(135deg, #ccc 0%, #999 100%);
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
+/* ---------- AUTHORITY ---------- */
+.authority{
+  padding:100px 10%;
+  background:#06080d;
+}
 
-    #formStatus {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 14px;
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
+.authority h2{
+  font-size:2.4rem;
+  margin-bottom:20px;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+.authority span{
+  color:#00a2ff;
+}
 
-    #formStatus.show {
-      display: block;
-    }
+.authority p{
+  max-width:850px;
+  font-size:1.05rem;
+  color:#dddddd;
+}
 
-    #formStatus.success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-
-    #formStatus.error {
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
-
-    #formStatus.loading {
-      background: #d1ecf1;
-      color: #0c5460;
-      border: 1px solid #bee5eb;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      body {
-        padding: 15px;
-      }
-
-      .contact-box {
-        padding: 30px 25px;
-      }
-
-      h2 {
-        font-size: 26px;
-      }
-
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .contact-box {
-        padding: 25px 20px;
-      }
-
-      h2 {
-        font-size: 24px;
-      }
-
-      input, textarea, select {
-        padding: 12px 14px;
-        font-size: 14px;
-      }
-
-      button {
-        padding: 14px;
-      }
-    }
-  </style>
+/* ---------- FOOTER ---------- */
+footer{
+  background:black;
+  padding:25px;
+  text-align:center;
+  color:#666;
+  font-size:0.8rem;
+}
+</style>
 </head>
+
 <body>
 
-<div class="contact-box">
-  <h2>📍 Plot Profile</h2>
-  <p class="subtitle">Fill in the details below to get started</p>
+<!-- ================================= HERO ================================= -->
 
-  <form id="contactForm">
-  
-    <div class="section-title">Contact Information</div>
+<div class="hero">
 
-    <div class="field">
-      <label>Your Name <span class="required-star">*</span></label>
-      <input type="text" name="name" required placeholder="Enter your full name">
-    </div>
+<h1>
+Unleash Your <span>Creative Power</span><br>
+with Premium Artist Sketchbooks
+</h1>
 
-    <div class="field">
-      <label>Your Email <span class="required-star">*</span></label>
-      <input type="email" name="email" required placeholder="your.email@example.com">
-    </div>
+<p>
+Designed for creators who take their art seriously. 
+Our sketchbooks are trusted by students, hobbyists, designers & professionals worldwide —
+turning imagination into mastery with every page.
+</p>
 
-    <div class="section-title">Plot Details</div>
-    
-    <div class="field">
-      <label>Plot Location <span class="required-star">*</span></label>
-      <input type="text" name="plot_location" required placeholder="Paste Google Maps link or address">
-    </div>
+<a href="#collection" class="cta">Explore The Collection</a>
 
-    <div class="grid-2">
-      <div class="field">
-        <label>Plot Size <span class="required-star">*</span></label>
-        <input type="number" name="plot_size" required placeholder="e.g., 1000">
-      </div>
-
-      <div class="field">
-        <label>Plot Type <span class="required-star">*</span></label>
-        <select name="plot_type" required>
-          <option value="">Select type</option>
-          <option value="Residential">Residential</option>
-          <option value="Commercial">Commercial</option>
-          <option value="Agricultural">Agricultural</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="grid-2">
-      <div class="field">
-        <label>Facing</label>
-        <select name="facing">
-          <option value="">Select direction</option>
-          <option value="East">East</option>
-          <option value="West">West</option>
-          <option value="North">North</option>
-          <option value="South">South</option>
-          <option value="North-East">North-East</option>
-          <option value="North-West">North-West</option>
-          <option value="South-East">South-East</option>
-          <option value="South-West">South-West</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>Road Width (ft)</label>
-        <input type="number" name="road_width" placeholder="e.g., 30">
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Asking Price (₹) <span class="required-star">*</span></label>
-      <input type="number" name="asking_price" required placeholder="e.g., 5000000">
-    </div>
-
-    <div class="section-title">Legal & Approvals</div>
-
-    <div class="grid-2">
-      <div class="field">
-        <label>Ownership Document</label>
-        <select name="document_type">
-          <option value="">Select document</option>
-          <option value="Registry">Registry</option>
-          <option value="GPA">GPA</option>
-          <option value="Leasehold">Leasehold</option>
-          <option value="Power of Attorney">Power of Attorney</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>Layout Approval</label>
-        <select name="layout_approval">
-          <option value="">Select approval</option>
-          <option value="RERA">RERA</option>
-          <option value="DTCP">DTCP</option>
-          <option value="No Approval">No Approval</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="section-title">Utilities & Conditions</div>
-
-    <div class="grid-2">
-      <div class="field">
-        <label>Basic Utilities</label>
-        <select name="utilities">
-          <option value="">Select utilities</option>
-          <option value="Water + Electricity">Water + Electricity</option>
-          <option value="Only Water">Only Water</option>
-          <option value="Only Electricity">Only Electricity</option>
-          <option value="None">None</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>Flood/Waterlogging</label>
-        <select name="flood_issue">
-          <option value="">Select option</option>
-          <option value="No">No</option>
-          <option value="Yes">Yes</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Purpose of Purchase</label>
-      <select name="purpose">
-        <option value="">Select purpose</option>
-        <option value="Investment">Investment</option>
-        <option value="House Construction">House Construction</option>
-        <option value="Farmhouse">Farmhouse</option>
-        <option value="Commercial Use">Commercial Use</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Additional Notes or Concerns</label>
-      <textarea name="notes" rows="4" placeholder="Any specific requirements or concerns you'd like to mention..."></textarea>
-    </div>
-
-    <button type="submit" id="submitBtn">
-      <span id="btnText">Submit Form</span>
-    </button>
-  </form>
-
-  <div id="formStatus"></div>
+<div class="trust">
+⚡ Trusted by 10,000+ artists • Premium Paper Quality • Amazon Verified Books
 </div>
 
-<script>
-const GOOGLE_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxc50E0TnG_O-6IwrS6cBidryjNYZ-2Fo29b7LTnZALWlXdJF6iq-MzKj5ELfgQafGf/exec";
+</div>
 
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  const form = e.target;
-  const submitBtn = document.getElementById("submitBtn");
-  const btnText = document.getElementById("btnText");
-  const statusEl = document.getElementById("formStatus");
-  const fd = new FormData(form);
-  const data = {};
+<!-- ============================== COLLECTION =============================== -->
 
-  fd.forEach((v, k) => {
-    data[k] = v;
-  });
-  
-  data.timestamp = new Date().toISOString();
+<div id="collection" class="collection">
 
-  submitBtn.disabled = true;
-  btnText.textContent = "Sending...";
-  statusEl.className = "show loading";
-  statusEl.textContent = "⏳ Submitting your form...";
+<h2>🔥 Our Best-Selling Sketchbook Series</h2>
 
-  fetch(GOOGLE_WEBAPP_URL, {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    form.reset();
-    statusEl.className = "show success";
-    statusEl.textContent = "✓ Form submitted successfully! We'll get back to you soon.";
-    btnText.textContent = "Submit Form";
-    submitBtn.disabled = false;
-    
-    setTimeout(() => {
-      statusEl.classList.remove("show");
-    }, 5000);
-  })
-  .catch(err => {
-    statusEl.className = "show error";
-    statusEl.textContent = "✗ Something went wrong. Please try again.";
-    btnText.textContent = "Submit Form";
-    submitBtn.disabled = false;
-    console.error("Error:", err);
-    
-    setTimeout(() => {
-      statusEl.classList.remove("show");
-    }, 5000);
-  });
-});
-</script>
+<div class="grid">
+
+<div class="book">
+<h3>Classic Artist Sketchbook</h3>
+<p>Minimalist format for daily creativity & long-form artwork.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S62GKYQ" target="_blank">Buy on Amazon</a>
+</div>
+
+<div class="book">
+<h3>Professional Drawing Vault</h3>
+<p>High-quality pages suited for shading, detailing and outlining.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SDCQCBT" target="_blank">Buy on Amazon</a>
+</div>
+
+<div class="book">
+<h3>Creative Daily Sketch Pad</h3>
+<p>Build consistency with everyday sketching mastery.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBNJXH8" target="_blank">Buy on Amazon</a>
+</div>
+
+<div class="book">
+<h3>Modern Art Workbook</h3>
+<p>Great for concept designers, students & illustrators.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SL19Q6M" target="_blank">Buy on Amazon</a>
+</div>
+
+<div class="book">
+<h3>Minimalist Sketch Edition</h3>
+<p>Premium aesthetic with a distraction-free drawing experience.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBX18BP" target="_blank">Buy on Amazon</a>
+</div>
+
+<div class="book">
+<h3>Art Practice Notebook</h3>
+<p>Daily drills & ideation base for improving skill fast.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P8RN" target="_blank">Buy on Amazon</a>
+</div>
+
+<div class="book">
+<h3>Precision Drawing Book</h3>
+<p>Perfect for line practice & architectural sketching.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S64XY6G" target="_blank">Buy on Amazon</a>
+</div>
+
+<div class="book">
+<h3>Creative Journal Vault</h3>
+<p>Mix of sketching, concepts & freehand expressions.</p>
+<a class="btn" href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P66T" target="_blank">Buy on Amazon</a>
+</div>
+
+</div>
+</div>
+
+
+<!-- ============================== AUTHORITY ================================ -->
+
+<div class="authority">
+
+<h2>
+Built For <span>Serious Artists</span>, Not Casual Notebooks
+</h2>
+
+<p>
+Most sketchbooks are mass-produced with zero design thinking.
+Our books are intentionally engineered for artistic growth — 
+page flow, spacing, binding strength, durability, and texture quality —
+all selected to help artists perform at their best.
+
+You don’t just sketch in our books — 
+you <b>build your artistic identity.</b>
+
+<br><br>
+🎯 Trusted by students, educators, freelance illustrators and professionals across UK & USA markets.
+</p>
+
+</div>
+
+<footer>
+© 2025 • Artist Vault Sketchbooks | Official KDP Partner Collection
+</footer>
 
 </body>
 </html>
