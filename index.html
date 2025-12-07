@@ -387,6 +387,82 @@
         grid-template-columns: minmax(0, 1fr);
       }
     }
+    /* ================================
+   SHARE MODAL STYLES
+================================ */
+
+.share-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.share-box {
+  max-width: 420px;
+  background: radial-gradient(circle at top left, #111827, #020617 70%);
+  border-radius: 16px;
+  border: 1px solid #1f2937;
+  padding: 22px 20px 24px;
+  margin: 12vh auto;
+  text-align: center;
+  color: #e5e7eb;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6);
+}
+
+.share-box h3 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 1.25rem;
+}
+
+.share-box p {
+  margin-bottom: 18px;
+  color: #9ca3af;
+  font-size: 0.96rem;
+}
+
+.share-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.share-close:hover {
+  color: #f9fafb;
+}
+
+.share-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.share-grid a,
+.share-grid button {
+  display: block;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid #374151;
+  border-radius: 10px;
+  padding: 10px 6px;
+  font-size: 0.9rem;
+  color: #e5e7eb;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.share-grid a:hover,
+.share-grid button:hover {
+  border-color: #0ea5e9;
+  background: rgba(14, 165, 233, 0.2);
+}
+
   </style>
 </head>
 <body>
@@ -394,7 +470,7 @@
     <!-- NAVBAR -->
     <nav class="nav" aria-label="Main navigation">
       <div class="nav-brand">
-        <img src="logo.png" alt="TruthOS logo" />
+        <img src="TruthOS LOGO.png" alt="TruthOS logo" />
         <div class="nav-title">
           <span>TruthOS</span>
           <span>The Graveyard of Fake News</span>
@@ -424,17 +500,25 @@
         TruthOS is a forensic fact-verification assistant. Paste any headline, forward,
         caption or speech. TruthOS investigates calmly, then issues a clear verdict you
         can screenshot and share.
-      </p>
-      <div class="hero-ctas" id="cta-top">
-        <button class="btn btn-primary">
-          <!-- Replace with your GPT link -->
-          <span>Open TruthOS GPT</span>
-        </button>
-        <button class="btn btn-secondary">
-          <!-- This can open share modal or instructions -->
-          <span>Share TruthOS with Your Community</span>
-        </button>
-      </div>
+      </p><div class="hero-ctas" id="cta-top">
+  
+  <!-- OPEN TRUTHOS GPT -->
+  <a
+    class="btn btn-primary"
+    href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+    target="_blank"
+    rel="noopener"
+  >
+    <span>Open TruthOS GPT</span>
+  </a>
+
+  <!-- SHARE BUTTON -->
+  <button class="btn btn-secondary" onclick="openShareModal()">
+    <span>Share TruthOS with Your Community</span>
+  </button>
+
+</div>
+      
       <p class="hero-note">
         Curious, not judgemental – every claim starts as <strong>unproven</strong> until the
         evidence speaks.
@@ -661,5 +745,89 @@ TS-20251212-4832
       }
     });
   </script>
+  <!-- SHARE POPUP MODAL -->
+<div id="shareModal" class="share-modal">
+  <div class="share-box">
+
+    <span class="share-close" onclick="closeShareModal()">✕</span>
+
+    <h3>Share TruthOS</h3>
+    <p>
+      Help build the <b>world's graveyard of fake news.</b><br />
+      Send TruthOS to your groups, students, followers, and friends.
+    </p>
+
+    <div class="share-grid">
+
+      <!-- WHATSAPP -->
+      <a
+        href="https://api.whatsapp.com/send?text=TruthOS%20%E2%80%93%20The%20Graveyard%20of%20Fake%20News%0AVerify%20any%20news%20using%20this%20GPT:%0Ahttps://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+        target="_blank"
+        rel="noopener"
+      >
+        📱 WhatsApp
+      </a>
+
+      <!-- FACEBOOK -->
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?u=https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+        target="_blank"
+        rel="noopener"
+      >
+        📘 Facebook
+      </a>
+
+      <!-- TWITTER / X -->
+      <a
+        href="https://twitter.com/intent/tweet?text=TruthOS%20%E2%80%93%20The%20Graveyard%20of%20Fake%20News%0AVerify%20any%20claim%20here:%20https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+        target="_blank"
+        rel="noopener"
+      >
+        🐦 X (Twitter)
+      </a>
+
+      <!-- LINKEDIN -->
+      <a
+        href="https://www.linkedin.com/sharing/share-offsite/?url=https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+        target="_blank"
+        rel="noopener"
+      >
+        💼 LinkedIn
+      </a>
+
+      <!-- EMAIL -->
+      <a
+        href="mailto:?subject=TruthOS%20–%20The%20Graveyard%20of%20Fake%20News&body=Check%20claims%20before%20sharing.%20Verify%20with%20TruthOS:%20https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+      >
+        ✉️ Email
+      </a>
+
+      <!-- COPY LINK -->
+      <button onclick="copyTruthOSLink()">
+        🔗 Copy Link
+      </button>
+
+    </div>
+
+  </div>
+</div>
+<script>
+  const truthOSLink =
+    "https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos";
+
+  function openShareModal() {
+    document.getElementById("shareModal").style.display = "block";
+  }
+
+  function closeShareModal() {
+    document.getElementById("shareModal").style.display = "none";
+  }
+
+  function copyTruthOSLink() {
+    navigator.clipboard.writeText(truthOSLink);
+    alert("TruthOS link copied! Share it anywhere.");
+  }
+</script>
+
 </body>
 </html>
