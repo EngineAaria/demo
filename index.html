@@ -2,749 +2,664 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Artist Vault — Premium Sketchbooks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TruthOS – The Graveyard of Fake News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="TruthOS is a forensic fact-verification assistant designed to be the graveyard of fake news. Paste any claim and get a clear, shareable verdict."
+  />
+  <meta name="theme-color" content="#050816" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TruthOS – The Graveyard of Fake News" />
+  <meta
+    property="og:description"
+    content="Paste any claim. TruthOS investigates and issues a clear verdict you can screenshot and share."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-domain.com" />
+  <meta property="og:image" content="https://your-domain.com/logo.png" />
 
   <style>
     :root {
-      --bg: #05060a;
-      --bg-alt: #0b0f19;
-      --accent: #00a2ff;
-      --accent-soft: rgba(0, 162, 255, 0.16);
-      --text-main: #ffffff;
-      --text-muted: #b9c0d4;
-      --border-soft: rgba(255, 255, 255, 0.06);
-      --radius-lg: 22px;
-      --radius-xl: 28px;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.8);
+      --bg: #050816;
+      --bg-soft: #070c20;
+      --bg-card: #050816;
+      --accent: #0ea5e9;
+      --accent-soft: rgba(14, 165, 233, 0.1);
+      --danger: #f97373;
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --border-subtle: #111827;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --radius-lg: 18px;
     }
 
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
     body {
+      margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: radial-gradient(circle at top left, #061833 0, #020308 40%);
+      background: radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
       color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
-      color: inherit;
+      color: var(--accent);
       text-decoration: none;
     }
 
-    /* -------------------- LAYOUT WRAPPER -------------------- */
+    a:hover {
+      text-decoration: underline;
+    }
 
     .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    main {
-      flex: 1;
-    }
-
-    section {
-      padding: 64px 18px;
       max-width: 1120px;
       margin: 0 auto;
+      padding: 18px 20px 64px;
     }
 
-    @media (min-width: 768px) {
-      section {
-        padding: 80px 32px;
-      }
+    /* NAVBAR */
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 8px 0 10px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 8, 22, 0.9),
+        rgba(5, 8, 22, 0.5),
+        transparent
+      );
     }
 
-    /* -------------------- HERO -------------------- */
-
-    .hero {
-      padding-top: 80px;
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .hero-inner {
+    .nav-brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+    }
+
+    .nav-title {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 2px;
     }
 
-    @media (min-width: 900px) {
-      .hero-inner {
-        flex-direction: row;
-        align-items: center;
-        gap: 48px;
-      }
+    .nav-title span:first-child {
+      font-weight: 650;
+      letter-spacing: 0.04em;
     }
 
-    .hero-text {
-      flex: 1.1;
-    }
-
-    .eyebrow {
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
+    .nav-title span:last-child {
+      font-size: 0.72rem;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
     }
 
-    .hero-title {
-      font-size: 2.2rem;
-      line-height: 1.18;
-      font-weight: 800;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.9rem;
     }
 
-    .hero-title span {
-      background: linear-gradient(120deg, #08d0ff, #3f8cff);
+    .nav-links a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-main);
+      font-size: 0.86rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      border-color: var(--accent);
+      color: #f9fafb;
+    }
+
+    /* HERO */
+
+    header.hero {
+      text-align: center;
+      padding: 32px 0 32px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 99px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
+    }
+
+    .hero h1 {
+      margin: 16px 0 8px;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(120deg, #e5e7eb, #a5f3fc);
       -webkit-background-clip: text;
-      background-clip: text;
       color: transparent;
     }
 
-    .hero-subtitle {
-      margin-top: 14px;
+    .hero-sub {
+      max-width: 640px;
+      margin: 0 auto 20px;
+      color: var(--text-soft);
       font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 520px;
     }
 
-    .hero-cta-row {
-      margin-top: 24px;
+    .hero-ctas {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .btn-primary {
-      padding: 12px 28px;
+    .btn {
       border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, #00a2ff, #59c3ff);
-      color: #021014;
-      font-weight: 700;
-      font-size: 0.96rem;
+      padding: 11px 22px;
+      font-size: 0.94rem;
+      font-weight: 600;
+      border: 1px solid transparent;
       cursor: pointer;
-      box-shadow: 0 14px 32px rgba(0, 162, 255, 0.55);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
 
+    .btn-primary {
+      background: radial-gradient(circle at top left, #22d3ee, #0ea5e9, #0284c7);
+      border-color: rgba(15, 23, 42, 0.9);
+      color: #020617;
+      box-shadow: 0 18px 40px rgba(8, 47, 73, 0.8);
+    }
+
     .btn-primary:hover {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 18px 40px rgba(0, 162, 255, 0.7);
+      filter: brightness(1.06);
     }
 
-    .btn-secondary-link {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      text-decoration: underline;
-      text-decoration-color: rgba(185, 192, 212, 0.4);
-      text-underline-offset: 4px;
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.7);
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text-main);
     }
 
-    .hero-badges {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      opacity: 0.9;
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+
+    .hero-note {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: var(--text-soft);
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      margin-top: 44px;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    section p.section-intro {
+      margin-top: 0;
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #111827, #020617 60%);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      margin-top: 4px;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      font-size: 0.93rem;
+      color: var(--text-soft);
+      margin-top: 4px;
     }
 
     .pill {
-      padding: 4px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      background: rgba(0, 0, 0, 0.42);
-      backdrop-filter: blur(12px);
-    }
-
-    /* -------------------- HERO GALLERY (VISUALS) -------------------- */
-
-    .hero-gallery-wrapper {
-      flex: 1;
-      margin-top: 14px;
-    }
-
-    @media (min-width: 900px) {
-      .hero-gallery-wrapper {
-        margin-top: 0;
-      }
-    }
-
-    .hero-gallery {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding: 16px 4px 10px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .hero-gallery::-webkit-scrollbar {
-      height: 4px;
-    }
-    .hero-gallery::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.26);
-      border-radius: 999px;
-    }
-
-    .hero-book-card {
-      scroll-snap-align: start;
-      flex: 0 0 68%;
-      max-width: 260px;
-      background: radial-gradient(circle at top, rgba(0, 162, 255, 0.25), #040611);
-      border-radius: var(--radius-xl);
-      padding: 12px 12px 16px;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (min-width: 600px) {
-      .hero-book-card {
-        flex: 0 0 210px;
-      }
-    }
-
-    .hero-book-image {
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      background: #020308;
-      border: 1px solid rgba(0, 0, 0, 0.7);
-    }
-
-    .hero-book-image img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      transition: transform 0.25s ease, filter 0.25s ease;
-    }
-
-    .hero-book-card:hover img {
-      transform: scale(1.05);
-      filter: saturate(1.15) contrast(1.02);
-    }
-
-    .hero-book-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .hero-book-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-    }
-
-    .hero-book-tag {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* -------------------- BOOK COLLECTION -------------------- */
-
-    .collection {
-      background: var(--bg-alt);
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .section-heading h2 {
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-    }
-
-    .section-heading p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .book-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
-    }
-
-    @media (min-width: 640px) {
-      .book-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 980px) {
-      .book-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    .book {
-      background: radial-gradient(circle at top left, var(--accent-soft), #020308);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      padding: 14px 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .book-cover {
-      border-radius: 16px;
-      overflow: hidden;
-      background: #020308;
-      border: 1px solid rgba(0, 0, 0, 0.7);
-    }
-
-    .book-cover img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-      transition: transform 0.25s ease, filter 0.25s ease;
-    }
-
-    .book:hover .book-cover img {
-      transform: scale(1.04);
-      filter: saturate(1.15);
-    }
-
-    .book-body {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .book-title {
-      font-size: 0.98rem;
-      font-weight: 700;
-    }
-
-    .book-subtitle {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .book-cta {
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn-book {
-      flex: 1;
-      padding: 9px 14px;
+      gap: 6px;
+      padding: 3px 8px;
       border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: #020308;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.16s ease, background 0.16s ease;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-soft);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(75, 85, 99, 0.7);
     }
 
-    .btn-book:hover {
-      transform: translateY(-1px);
-      background: #0594eb;
+    /* VERDICT DEMO */
+
+    .verdict-wrapper {
+      margin-top: 20px;
     }
 
-    .book-pages {
-      font-size: 0.78rem;
-      color: var(--text-muted);
+    .verdict-demo {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 0.86rem;
+      white-space: pre-wrap;
+      background: #020617;
+      border-radius: var(--radius-lg);
+      border: 1px solid #1f2937;
+      padding: 18px 20px;
+      box-shadow: var(--shadow-soft);
+      overflow-x: auto;
     }
 
-    /* -------------------- AUTHORITY / STORY -------------------- */
+    /* LISTS */
 
-    .authority {
-      background: var(--bg);
+    ul {
+      padding-left: 18px;
+      margin-top: 8px;
+      color: var(--text-soft);
+      font-size: 0.94rem;
     }
 
-    .authority-inner {
-      max-width: 820px;
+    li + li {
+      margin-top: 4px;
     }
 
-    .authority h2 {
-      font-size: 1.5rem;
-      margin-bottom: 14px;
+    /* FAQ */
+
+    .faq-item + .faq-item {
+      margin-top: 16px;
     }
 
-    .authority span {
-      color: var(--accent);
+    .faq-item h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
     }
 
-    .authority p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+    .faq-item p {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin-top: 0;
     }
 
-    /* -------------------- FOOTER -------------------- */
+    /* FOOTER */
 
     footer {
-      padding: 20px 18px 26px;
-      background: #020308;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 0.76rem;
-      color: #7a8194;
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid #111827;
+      font-size: 0.78rem;
+      color: var(--text-soft);
       text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 880px) {
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page {
+        padding-inline: 16px;
+      }
+
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
-
 <body>
   <div class="page">
-    <main>
-      <!-- ============================= HERO ============================= -->
-      <section class="hero" id="top">
-        <div class="hero-inner">
-          <div class="hero-text">
-            <div class="eyebrow">Artist Vault · Sketchbook Series</div>
-            <h1 class="hero-title">
-              Unleash Your <span>Creative Power</span><br />
-              with Premium Sketchbooks
-            </h1>
-            <p class="hero-subtitle">
-              See your ideas before you even open the book. Explore a curated
-              series of sketchbooks built for students, hobbyists, designers and
-              professionals who want their art to look as premium as it feels.
-            </p>
-
-            <div class="hero-cta-row">
-              <a href="#collection" class="btn-primary">
-                Explore all sketchbooks
-                <span>↘</span>
-              </a>
-              <a href="#collection" class="btn-secondary-link">
-                Scroll to the visual library
-              </a>
-            </div>
-
-            <div class="hero-badges">
-              <span class="pill">⚡ Amazon KDP Published</span>
-              <span class="pill">✏️ Optimised for daily sketching</span>
-              <span class="pill">🖤 Black · Blue · White aesthetic</span>
-            </div>
-          </div>
-
-          <!-- Hero gallery of key book covers (VISUALS) -->
-          <div class="hero-gallery-wrapper">
-            <div class="hero-gallery">
-              <!-- NOTE: Replace src values with your actual cover image files -->
-              <article class="hero-book-card">
-                <div class="hero-book-image">
-                  <img
-                    src="covers/classic-artist-sketchbook.jpg"
-                    alt="Classic Artist Sketchbook cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="hero-book-meta">
-                  <div class="hero-book-title">Classic Artist Sketchbook</div>
-                  <div class="hero-book-tag">Clean layout · Everyday drawing</div>
-                </div>
-              </article>
-
-              <article class="hero-book-card">
-                <div class="hero-book-image">
-                  <img
-                    src="covers/pro-drawing-vault.jpg"
-                    alt="Professional Drawing Vault cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="hero-book-meta">
-                  <div class="hero-book-title">Professional Drawing Vault</div>
-                  <div class="hero-book-tag">
-                    Shading · Detailing · Sharp lines
-                  </div>
-                </div>
-              </article>
-
-              <article class="hero-book-card">
-                <div class="hero-book-image">
-                  <img
-                    src="covers/creative-daily-pad.jpg"
-                    alt="Creative Daily Sketch Pad cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="hero-book-meta">
-                  <div class="hero-book-title">Creative Daily Sketch Pad</div>
-                  <div class="hero-book-tag">Build consistent sketch habits</div>
-                </div>
-              </article>
-            </div>
-          </div>
+    <!-- NAVBAR -->
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-brand">
+        <img src="logo.png" alt="TruthOS logo" />
+        <div class="nav-title">
+          <span>TruthOS</span>
+          <span>The Graveyard of Fake News</span>
         </div>
-      </section>
+      </div>
+      <div class="nav-links" aria-label="Site sections">
+        <a href="#how-it-works">How it works</a>
+        <a href="#who-for">Who it’s for</a>
+        <a href="#verdict">Verdict card</a>
+        <a href="#faq">FAQ</a>
+        <button class="nav-cta" onclick="document.getElementById('cta-top').scrollIntoView({behavior:'smooth'})">
+          Open TruthOS GPT
+        </button>
+      </div>
+    </nav>
 
-      <!-- ========================= COLLECTION ========================= -->
-      <section class="collection" id="collection">
-        <div class="section-heading">
-          <h2>Our Best-Selling Sketchbook Collection</h2>
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="hero-badge">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        <span>Verified by TruthOS</span>
+      </div>
+      <h1>
+        The <span>Graveyard of Fake News</span>
+      </h1>
+      <p class="hero-sub">
+        TruthOS is a forensic fact-verification assistant. Paste any headline, forward,
+        caption or speech. TruthOS investigates calmly, then issues a clear verdict you
+        can screenshot and share.
+      </p>
+      <div class="hero-ctas" id="cta-top">
+        <button class="btn btn-primary">
+          <!-- Replace with your GPT link -->
+          <span>Open TruthOS GPT</span>
+        </button>
+        <button class="btn btn-secondary">
+          <!-- This can open share modal or instructions -->
+          <span>Share TruthOS with Your Community</span>
+        </button>
+      </div>
+      <p class="hero-note">
+        Curious, not judgemental – every claim starts as <strong>unproven</strong> until the
+        evidence speaks.
+      </p>
+    </header>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+      <h2>How TruthOS Works</h2>
+      <p class="section-intro">
+        TruthOS behaves less like a chatbot and more like a calm investigation room.  
+        It breaks claims down, asks “what’s the evidence?”, and then shows you its reasoning.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <span class="pill">Step 1 · Scan</span>
+          <h3>Paste what you received</h3>
           <p>
-            Every cover is designed to inspire, every page engineered for
-            progress. Tap on any book to jump straight to Amazon and start
-            sketching.
+            A WhatsApp forward, tweet thread, news headline, reel caption or transcript –
+            just paste the text into TruthOS or upload a screenshot.
           </p>
         </div>
-
-        <div class="book-grid">
-          <!-- 1 -->
-          <article class="book">
-            <div class="book-cover">
-              <!-- Replace with real cover -->
-              <img
-                src="covers/classic-artist-sketchbook.jpg"
-                alt="Classic Artist Sketchbook cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Classic Artist Sketchbook</div>
-              <div class="book-subtitle">
-                Minimalist layout for long-form artwork & daily practice.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S62GKYQ"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">8.25&quot; × 11&quot; · 240 pages</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- 2 -->
-          <article class="book">
-            <div class="book-cover">
-              <img
-                src="covers/pro-drawing-vault.jpg"
-                alt="Professional Drawing Vault cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Professional Drawing Vault</div>
-              <div class="book-subtitle">
-                Built for shading, cross-hatching, outlines & advanced study.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SDCQCBT"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">Thick white paper</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- 3 -->
-          <article class="book">
-            <div class="book-cover">
-              <img
-                src="covers/creative-daily-pad.jpg"
-                alt="Creative Daily Sketch Pad cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Creative Daily Sketch Pad</div>
-              <div class="book-subtitle">
-                Commit to 10–20 minutes of sketching every single day.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBNJXH8"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">Perfect for routines</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- 4 -->
-          <article class="book">
-            <div class="book-cover">
-              <img
-                src="covers/modern-art-workbook.jpg"
-                alt="Modern Art Workbook cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Modern Art Workbook</div>
-              <div class="book-subtitle">
-                Ideal for design students, illustrators, concept artists.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SL19Q6M"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">Concept-ready layout</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- 5 -->
-          <article class="book">
-            <div class="book-cover">
-              <img
-                src="covers/minimalist-edition.jpg"
-                alt="Minimalist Sketch Edition cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Minimalist Sketch Edition</div>
-              <div class="book-subtitle">
-                Crisp, distraction-free design to keep focus on your lines.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09SBX18BP"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">Matte cover · Clean vibe</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- 6 -->
-          <article class="book">
-            <div class="book-cover">
-              <img
-                src="covers/art-practice-notebook.jpg"
-                alt="Art Practice Notebook cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Art Practice Notebook</div>
-              <div class="book-subtitle">
-                Drills, experiments, thumbnails & rough exploration pages.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P8RN"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">Skill-building companion</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- 7 -->
-          <article class="book">
-            <div class="book-cover">
-              <img
-                src="covers/precision-drawing-book.jpg"
-                alt="Precision Drawing Book cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Precision Drawing Book</div>
-              <div class="book-subtitle">
-                Great for line practice, perspective & architectural sketches.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S64XY6G"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">Clean alignment · Structure</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- 8 -->
-          <article class="book">
-            <div class="book-cover">
-              <img
-                src="covers/creative-journal-vault.jpg"
-                alt="Creative Journal Vault cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="book-body">
-              <div class="book-title">Creative Journal Vault</div>
-              <div class="book-subtitle">
-                Combine sketches, notes, ideas & visual journaling in one place.
-              </div>
-              <div class="book-cta">
-                <a
-                  href="https://kdp.amazon.com/amazon-dp-action/uk/dualbookshelf.marketplacelink/B09S66P66T"
-                  target="_blank"
-                  class="btn-book"
-                  >Buy on Amazon</a
-                >
-                <div class="book-pages">Hybrid art + journaling</div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- ========================= AUTHORITY ========================= -->
-      <section class="authority">
-        <div class="authority-inner">
-          <h2>Built For <span>Serious Artists</span>, Not Casual Notebooks</h2>
+        <div class="card">
+          <span class="pill">Step 2 · Verify</span>
+          <h3>Evidence over emotion</h3>
           <p>
-            Most sketchbooks are random stationery. Artist Vault is built as a
-            visual system. Covers that speak your style. Page layouts that
-            support real growth. Binding, texture and format tuned for creators
-            who want to level up — not just doodle.
-            <br /><br />
-            Each book in this collection is part of a bigger story: your
-            portfolio, your practice, your next opportunity. Choose the one that
-            matches your current season, and let the pages pull better art out
-            of you — one sketch at a time.
+            TruthOS isolates each factual claim, looks for official records and primary
+            reporting, checks fact-check databases, and runs basic logic and context checks.
           </p>
         </div>
-      </section>
-    </main>
+        <div class="card">
+          <span class="pill">Step 3 · Verdict</span>
+          <h3>Get a shareable TRUTHOS VERDICT</h3>
+          <p>
+            You receive a clear verdict – <strong>Verified, Likely, Unproven, Misleading, or False</strong> –
+            along with a TRUTHOS VERDICT card that you can screenshot and share wherever the claim began.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <!-- WHO IT'S FOR -->
+    <section id="who-for">
+      <h2>Who Is TruthOS For?</h2>
+      <p class="section-intro">
+        TruthOS is designed for anyone who wants their information diet – and their audience –
+        to be a little safer and a lot more honest.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Everyday checkers</h3>
+          <ul>
+            <li><strong>Family & friends:</strong> Scan forwards before they reach the whole group.</li>
+            <li><strong>Students & learners:</strong> Verify “facts” before using them in essays, debates or exams.</li>
+            <li><strong>Concerned citizens:</strong> Check political or social claims before forming a strong opinion.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>People with audiences</h3>
+          <ul>
+            <li><strong>Group admins & community leaders:</strong> Keep your spaces clean with TRUTHOS VERDICT cards.</li>
+            <li><strong>Creators & influencers:</strong> Fact-check scripts and captions, then add “Verified by TruthOS”.</li>
+            <li><strong>Teachers & trainers:</strong> Use TruthOS in digital literacy and media awareness sessions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERDICT CARD -->
+    <section id="verdict">
+      <h2>The TRUTHOS VERDICT Card</h2>
+      <p class="section-intro">
+        When a claim is misleading or false, TruthOS issues a <strong>TRUTHOS VERDICT</strong> –
+        a consistent, professional summary you can share instead of arguing.
+      </p>
+      <div class="verdict-wrapper">
+        <div class="verdict-demo" aria-label="Example of a TRUTHOS VERDICT card">
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           🔍 TRUTHOS VERDICT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📰 CLAIM ANALYZED
+“Government is banning ₹500 notes next month.”
+
+❌ FINAL VERDICT
+FALSE
+
+📊 TRUTH RELIABILITY SCORE
+09/100
+
+📚 KEY EVIDENCE SUMMARY
+No official RBI or Government notification. Similar rumor has been publicly debunked by multiple fact-check bodies.
+
+🛡 VERIFIED BY TRUTHOS
+
+📆 VERIFICATION DATE
+12 Dec 2025, 10:32 PM IST
+
+🔐 CERTIFICATE ID
+TS-20251212-4832
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠ PUBLIC NOTICE:
+“No verdict is issued without Tier-A or Tier-B documentary verification.”
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        </div>
+        <p class="hero-note">
+          Anyone who doubts the card can upload it back into TruthOS to see the full report.
+          If the card was edited, TruthOS will mark it as an invalid certificate.
+        </p>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section>
+      <h2>When to Reach for TruthOS</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Health & money claims</h3>
+          <p>
+            “This drink cures X.” “Guaranteed 10% monthly returns.”  
+            These deserve verification, not blind trust. Let TruthOS examine the logic and evidence.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Politics & public issues</h3>
+          <p>
+            Cropped speeches, shocking graphs, out-of-context videos – TruthOS helps you slow down,
+            separate claim from emotion, and see what’s actually known.
+          </p>
+        </div>
+        <div class="card">
+          <h3>News-based content</h3>
+          <p>
+            If you create explainers, reels or newsletters based on news, run your script through TruthOS.
+            Your audience gets your perspective, plus a layer of forensic care.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET STARTED -->
+    <section>
+      <h2>Start in Under a Minute</h2>
+      <p class="section-intro">
+        You don’t need an account, a course, or a new habit. You just need one new reflex:
+        “Before I forward this, I’ll ask TruthOS.”
+      </p>
+      <ol style="margin-top: 10px; color: var(--text-soft); font-size: 0.95rem;">
+        <li>Open TruthOS GPT.</li>
+        <li>Paste the message, headline or caption – or describe the video you saw.</li>
+        <li>Read the clear report and TRUTHOS VERDICT.</li>
+        <li>Screenshot the verdict card and share it where the claim appeared.</li>
+      </ol>
+      <div class="hero-ctas" style="margin-top: 18px;">
+        <button class="btn btn-primary">Open TruthOS GPT</button>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>Questions People Often Ask</h2>
+      <div class="faq-item">
+        <h3>Does TruthOS replace human fact-checkers?</h3>
+        <p>
+          No. Think of TruthOS as a calm first filter. It helps anyone – from regular users to journalists –
+          quickly see how strong the evidence is so they can decide what to do next.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>What happens if a claim is “Unproven”?</h3>
+        <p>
+          Then the honest answer is: we don’t know yet. TruthOS will show you that the evidence isn’t strong
+          enough either way, which is often the safest place to stand.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Is TruthOS politically neutral?</h3>
+        <p>
+          TruthOS focuses on evidence, not sides. Official records and primary reporting are weighted far more
+          heavily than commentary, influencers or viral sentiment.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my input public?</h3>
+        <p>
+          TruthOS is designed for responsible use. Avoid sharing sensitive personal data in your checks.  
+          You stay in control of what you screenshot and share.
+        </p>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section>
+      <h2>Join the Mission</h2>
+      <p class="section-intro">
+        Fake news spreads because it is emotional, fast and frictionless.
+        TruthOS exists to make <strong>truth</strong> just as easy to share – gentle in tone, firm on evidence.
+      </p>
+      <p class="section-intro">
+        Every time you scan a claim, share a TRUTHOS VERDICT, or ask someone,
+        “Have you checked this with TruthOS?”, you help turn this platform into the graveyard of fake news.
+      </p>
+      <div class="hero-ctas" style="margin-top: 18px;">
+        <button class="btn btn-primary">Open TruthOS GPT</button>
+        <button class="btn btn-secondary">Invite Your Group to Use TruthOS</button>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-      © 2025 · Artist Vault Sketchbooks · Amazon KDP Collection
+      TruthOS · VERIFIED BY TRUTHOS · Designed to be the last place fake news is seen alive.
     </footer>
   </div>
+
+  <!-- Small helper script for smooth scroll from nav buttons (optional, no dependencies) -->
+  <script>
+    document.addEventListener("click", function (e) {
+      const t = e.target.closest("a[href^='#']");
+      if (!t) return;
+      const id = t.getAttribute("href").slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  </script>
 </body>
 </html>
