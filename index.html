@@ -481,7 +481,10 @@
         <a href="#who-for">Who it’s for</a>
         <a href="#verdict">Verdict card</a>
         <a href="#faq">FAQ</a>
-        <button class="nav-cta" onclick="document.getElementById('cta-top').scrollIntoView({behavior:'smooth'})">
+        <button
+          class="nav-cta"
+          onclick="window.open('https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos','_blank','noopener')"
+          >
           Open TruthOS GPT
         </button>
       </div>
@@ -672,7 +675,14 @@ TS-20251212-4832
         <li>Screenshot the verdict card and share it where the claim appeared.</li>
       </ol>
       <div class="hero-ctas" style="margin-top: 18px;">
-        <button class="btn btn-primary">Open TruthOS GPT</button>
+        <a
+          class="btn btn-primary"
+          href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+          target="_blank"
+          rel="noopener"
+          >
+          Open TruthOS GPT
+        </a>
       </div>
     </section>
 
@@ -721,14 +731,26 @@ TS-20251212-4832
         “Have you checked this with TruthOS?”, you help turn this platform into the graveyard of fake news.
       </p>
       <div class="hero-ctas" style="margin-top: 18px;">
-        <button class="btn btn-primary">Open TruthOS GPT</button>
-        <button class="btn btn-secondary">Invite Your Group to Use TruthOS</button>
+        <a
+    class="btn btn-primary"
+    href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
+    target="_blank"
+    rel="noopener"
+  >
+    <span>Open TruthOS GPT</span>
+  </a>
+
+  <!-- SHARE BUTTON -->
+  <button class="btn btn-secondary" onclick="openShareModal()">
+    <span>Share TruthOS with Your Community</span>
+  </button>
+
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      TruthOS · VERIFIED BY TRUTHOS · Designed to be the last place fake news is seen alive.
+      · VERIFIED BY TRUTHOS ·
     </footer>
   </div>
 
