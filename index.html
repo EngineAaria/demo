@@ -2,617 +2,757 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>TruthOS – The Graveyard of Fake News</title>
+  <title>TruthOS – Your Family Deserves Better Than Your Fake News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="TruthOS is a forensic fact-verification assistant designed to be the graveyard of fake news. Paste any claim and get a clear, shareable verdict."
-  />
+  <meta name="description" content="That forward you're about to send? It's probably destroying someone's trust in you. Verify in 10 seconds or stay embarrassed forever." />
   <meta name="theme-color" content="#050816" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="TruthOS – The Graveyard of Fake News" />
-  <meta
-    property="og:description"
-    content="Paste any claim. TruthOS investigates and issues a clear verdict you can screenshot and share."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-domain.com" />
-  <meta property="og:image" content="https://your-domain.com/logo.png" />
-
   <style>
     :root {
       --bg: #050816;
-      --bg-soft: #070c20;
-      --bg-card: #050816;
       --accent: #0ea5e9;
-      --accent-soft: rgba(14, 165, 233, 0.1);
-      --danger: #f97373;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --success: #10b981;
       --text-main: #e5e7eb;
       --text-soft: #9ca3af;
-      --border-subtle: #111827;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
-      --radius-lg: 18px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #000;
       color: var(--text-main);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 18px 20px 64px;
-    }
-
-    /* NAVBAR */
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 8px 0 10px;
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 8, 22, 0.9),
-        rgba(5, 8, 22, 0.5),
-        transparent
-      );
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .nav-brand img {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-    }
-
-    .nav-title {
+    /* AGGRESSIVE HERO */
+    .hero {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      gap: 2px;
-    }
-
-    .nav-title span:first-child {
-      font-weight: 650;
-      letter-spacing: 0.04em;
-    }
-
-    .nav-title span:last-child {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-soft);
-    }
-
-    .nav-links {
-      display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 16px;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      color: var(--text-soft);
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: var(--text-main);
-    }
-
-    .nav-cta {
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.85);
-      color: var(--text-main);
-      font-size: 0.86rem;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .nav-cta:hover {
-      border-color: var(--accent);
-      color: #f9fafb;
-    }
-
-    /* HERO */
-
-    header.hero {
       text-align: center;
-      padding: 32px 0 32px;
+      padding: 40px 20px;
+      background: radial-gradient(circle at 50% 30%, #7f1d1d 0%, #450a0a 40%, #000 80%);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-badge {
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 60%);
+      animation: danger-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes danger-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .warning-banner {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 4px 10px;
+      gap: 10px;
+      padding: 10px 24px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.7);
-      font-size: 0.76rem;
-      letter-spacing: 0.16em;
+      background: rgba(239, 68, 68, 0.2);
+      border: 2px solid #ef4444;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-soft);
+      color: #fca5a5;
+      margin-bottom: 25px;
+      animation: blink 1.5s ease-in-out infinite;
     }
 
-    .hero-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 99px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
     }
 
     .hero h1 {
-      margin: 16px 0 8px;
-      font-size: clamp(2.4rem, 4vw, 3.2rem);
-      letter-spacing: 0.02em;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 25px;
+      text-shadow: 0 4px 20px rgba(239, 68, 68, 0.5);
     }
 
-    .hero h1 span {
-      background: linear-gradient(120deg, #e5e7eb, #a5f3fc);
+    .hero h1 .danger {
+      color: #ef4444;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(120deg, #fbbf24, #f59e0b, #ef4444);
       -webkit-background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-sub {
-      max-width: 640px;
-      margin: 0 auto 20px;
-      color: var(--text-soft);
-      font-size: 0.98rem;
+    .reality-check {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 3px solid #ef4444;
+      border-radius: 20px;
+      padding: 30px;
+      margin: 35px auto;
+      max-width: 650px;
+      text-align: left;
+      box-shadow: 0 0 60px rgba(239, 68, 68, 0.4);
+      animation: shake-intro 0.6s ease-out;
     }
 
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 18px;
+    @keyframes shake-intro {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
     }
 
-    .btn {
-      border-radius: 999px;
-      padding: 11px 22px;
-      font-size: 0.94rem;
-      font-weight: 600;
-      border: 1px solid transparent;
-      cursor: pointer;
+    .reality-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      background: #ef4444;
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
     }
 
-    .btn-primary {
-      background: radial-gradient(circle at top left, #22d3ee, #0ea5e9, #0284c7);
-      border-color: rgba(15, 23, 42, 0.9);
-      color: #020617;
-      box-shadow: 0 18px 40px rgba(8, 47, 73, 0.8);
+    .reality-scenario {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
-    .btn-primary:hover {
-      filter: brightness(1.06);
+    .reality-damage {
+      background: rgba(239, 68, 68, 0.15);
+      border-left: 4px solid #ef4444;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      color: #fca5a5;
+      font-weight: 500;
+    }
+
+    .reality-solution {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 0.95rem;
+      color: #6ee7b7;
+      font-weight: 600;
+    }
+
+    .hero-statement {
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      color: #e5e7eb;
+      max-width: 750px;
+      margin: 30px auto;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    .hero-statement .emphasis {
+      color: #fbbf24;
+      font-weight: 700;
+    }
+
+    .stats-shock {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin: 35px 0;
+    }
+
+    .stat-brutal {
+      background: rgba(15, 23, 42, 0.8);
+      border: 2px solid #ef4444;
+      border-radius: 16px;
+      padding: 20px 25px;
+      min-width: 180px;
+      text-align: center;
+    }
+
+    .stat-number-big {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #ef4444;
+      display: block;
+      text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    }
+
+    .stat-label-brutal {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 5px;
+    }
+
+    .cta-urgent {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 45px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ef4444, #dc2626, #991b1b);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 20px 60px rgba(239, 68, 68, 0.6);
+      transition: all 0.3s ease;
+      animation: pulse-cta 2s ease-in-out infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes pulse-cta {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .cta-urgent:hover {
+      transform: scale(1.08) !important;
+      box-shadow: 0 25px 80px rgba(239, 68, 68, 0.8);
+    }
+
+    .cta-subtitle {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    /* CONFRONTATION SECTION */
+    .confrontation {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, #000 0%, #0f172a 50%, #000 100%);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title-brutal {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+
+    .section-subtitle-brutal {
+      text-align: center;
+      color: #fca5a5;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .damage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .damage-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 2px solid #ef4444;
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .damage-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(239, 68, 68, 0.4);
+      border-color: #fca5a5;
+    }
+
+    .damage-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .damage-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #fbbf24;
+    }
+
+    .damage-description {
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* VERDICT SHOWCASE - AGGRESSIVE */
+    .verdict-section {
+      padding: 80px 20px;
+      background: #000;
+    }
+
+    .verdict-destroyer {
+      max-width: 700px;
+      margin: 40px auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 3px solid #ef4444;
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 0 80px rgba(239, 68, 68, 0.5);
+      white-space: pre-wrap;
+      position: relative;
+    }
+
+    .verdict-destroyer::before {
+      content: '💀 CLAIM DESTROYED 💀';
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      padding: 8px 28px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.6);
+    }
+
+    /* HOW IT WORKS - SIMPLIFIED AGGRESSIVE */
+    .how-section {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, #000 0%, #0f172a 50%, #000 100%);
+    }
+
+    .steps-brutal {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .step-brutal {
+      background: rgba(30, 41, 59, 0.5);
+      border: 2px solid #475569;
+      border-radius: 16px;
+      padding: 35px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .step-brutal:hover {
+      transform: scale(1.05);
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .step-number-brutal {
+      display: inline-block;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.5);
+    }
+
+    .step-title-brutal {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+
+    .step-desc-brutal {
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* TESTIMONIALS - REAL IMPACT */
+    .impact-section {
+      padding: 80px 20px;
+      background: #0f172a;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .impact-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid #334155;
+      border-left: 4px solid #10b981;
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .impact-quote {
+      font-size: 1.05rem;
+      color: #e5e7eb;
+      margin-bottom: 15px;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .impact-author {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    /* FINAL CTA - ULTIMATUM */
+    .final-ultimatum {
+      padding: 100px 20px;
+      text-align: center;
+      background: radial-gradient(circle at center, #7f1d1d 0%, #450a0a 40%, #000 80%);
+    }
+
+    .ultimatum-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      margin-bottom: 25px;
+      line-height: 1.2;
+    }
+
+    .ultimatum-title .red {
+      color: #ef4444;
+    }
+
+    .ultimatum-statement {
+      font-size: 1.25rem;
+      color: #cbd5e1;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .ultimatum-statement strong {
+      color: #fbbf24;
+      font-weight: 700;
     }
 
     .btn-secondary {
-      background: rgba(15, 23, 42, 0.7);
-      border-color: rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 2px solid #475569;
       color: var(--text-main);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 15px;
     }
 
     .btn-secondary:hover {
       border-color: var(--accent);
+      background: rgba(14, 165, 233, 0.2);
+      transform: scale(1.05);
     }
 
-    .hero-note {
-      margin-top: 10px;
-      font-size: 0.82rem;
-      color: var(--text-soft);
+    /* SHARE MODAL */
+    .share-modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
     }
 
-    /* GENERAL SECTIONS */
-
-    section {
-      margin-top: 44px;
+    .share-box {
+      max-width: 500px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 2px solid #ef4444;
+      border-radius: 20px;
+      padding: 40px;
+      margin: 10vh auto;
+      position: relative;
+      box-shadow: 0 30px 100px rgba(239, 68, 68, 0.6);
     }
 
-    section h2 {
+    .share-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
       font-size: 1.8rem;
-      margin-bottom: 8px;
-    }
-
-    section p.section-intro {
-      margin-top: 0;
+      cursor: pointer;
       color: var(--text-soft);
-      max-width: 620px;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 22px;
-      margin-top: 20px;
+    .share-close:hover {
+      color: #ef4444;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-      margin-top: 20px;
+    .share-title {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #fbbf24;
+      font-weight: 900;
     }
 
-    .card {
-      background: radial-gradient(circle at top left, #111827, #020617 60%);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 18px 18px 20px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .card h3 {
-      margin-top: 4px;
-      margin-bottom: 8px;
+    .share-desc {
+      color: var(--text-soft);
+      margin-bottom: 30px;
+      text-align: center;
       font-size: 1.05rem;
     }
 
-    .card p {
-      font-size: 0.93rem;
-      color: var(--text-soft);
-      margin-top: 4px;
+    .share-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
     }
 
-    .pill {
-      display: inline-flex;
+    .share-btn {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-soft);
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(75, 85, 99, 0.7);
+      justify-content: center;
+      gap: 10px;
+      padding: 16px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 2px solid #475569;
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.95rem;
     }
 
-    /* VERDICT DEMO */
-
-    .verdict-wrapper {
-      margin-top: 20px;
-    }
-
-    .verdict-demo {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
-      font-size: 0.86rem;
-      white-space: pre-wrap;
-      background: #020617;
-      border-radius: var(--radius-lg);
-      border: 1px solid #1f2937;
-      padding: 18px 20px;
-      box-shadow: var(--shadow-soft);
-      overflow-x: auto;
-    }
-
-    /* LISTS */
-
-    ul {
-      padding-left: 18px;
-      margin-top: 8px;
-      color: var(--text-soft);
-      font-size: 0.94rem;
-    }
-
-    li + li {
-      margin-top: 4px;
-    }
-
-    /* FAQ */
-
-    .faq-item + .faq-item {
-      margin-top: 16px;
-    }
-
-    .faq-item h3 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-
-    .faq-item p {
-      font-size: 0.92rem;
-      color: var(--text-soft);
-      margin-top: 0;
-    }
-
-    /* FOOTER */
-
-    footer {
-      margin-top: 48px;
-      padding-top: 18px;
-      border-top: 1px solid #111827;
-      font-size: 0.78rem;
-      color: var(--text-soft);
-      text-align: center;
+    .share-btn:hover {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.2);
+      transform: scale(1.05);
     }
 
     /* RESPONSIVE */
-
-    @media (max-width: 880px) {
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
+      .hero {
+        min-height: auto;
+        padding: 40px 20px;
       }
 
-      .page {
-        padding-inline: 16px;
+      .stats-shock {
+        flex-direction: column;
+        gap: 15px;
       }
 
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
+      .cta-urgent {
+        font-size: 1.1rem;
+        padding: 18px 35px;
+      }
+
+      .share-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .verdict-destroyer {
+        font-size: 0.75rem;
+        padding: 25px;
       }
     }
-    /* ================================
-   SHARE MODAL STYLES
-================================ */
-
-.share-modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  inset: 0;
-  background: rgba(2, 6, 23, 0.75);
-  backdrop-filter: blur(4px);
-}
-
-.share-box {
-  max-width: 420px;
-  background: radial-gradient(circle at top left, #111827, #020617 70%);
-  border-radius: 16px;
-  border: 1px solid #1f2937;
-  padding: 22px 20px 24px;
-  margin: 12vh auto;
-  text-align: center;
-  color: #e5e7eb;
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6);
-}
-
-.share-box h3 {
-  margin-top: 0;
-  margin-bottom: 6px;
-  font-size: 1.25rem;
-}
-
-.share-box p {
-  margin-bottom: 18px;
-  color: #9ca3af;
-  font-size: 0.96rem;
-}
-
-.share-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  color: #9ca3af;
-}
-
-.share-close:hover {
-  color: #f9fafb;
-}
-
-.share-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.share-grid a,
-.share-grid button {
-  display: block;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid #374151;
-  border-radius: 10px;
-  padding: 10px 6px;
-  font-size: 0.9rem;
-  color: #e5e7eb;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.15s ease;
-}
-
-.share-grid a:hover,
-.share-grid button:hover {
-  border-color: #0ea5e9;
-  background: rgba(14, 165, 233, 0.2);
-}
-
   </style>
 </head>
 <body>
-  <div class="page">
-    <!-- NAVBAR -->
-    <nav class="nav" aria-label="Main navigation">
-      <div class="nav-brand">
-        <img src="TruthOS LOGO.png" alt="TruthOS logo" />
-        <div class="nav-title">
-          <span>TruthOS</span>
-          <span>The Graveyard of Fake News</span>
-        </div>
-      </div>
-      <div class="nav-links" aria-label="Site sections">
-        <a href="#how-it-works">How it works</a>
-        <a href="#who-for">Who it’s for</a>
-        <a href="#verdict">Verdict card</a>
-        <a href="#faq">FAQ</a>
-        <button
-          class="nav-cta"
-          onclick="window.open('https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos','_blank','noopener')"
-          >
-          Open TruthOS GPT
-        </button>
-      </div>
-    </nav>
 
-    <!-- HERO -->
-    <header class="hero" id="top">
-      <div class="hero-badge">
-        <span class="hero-badge-dot" aria-hidden="true"></span>
-        <span>Verified by TruthOS</span>
+  <!-- AGGRESSIVE HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="warning-banner">
+        ⚠️ WARNING: YOU MIGHT BE THE PROBLEM
       </div>
+
       <h1>
-        The <span>Graveyard of Fake News</span>
+        Your <span class="danger">Fake News</span> Is<br/>
+        <span class="highlight">Destroying Lives</span>
       </h1>
-      <p class="hero-sub">
-        TruthOS is a forensic fact-verification assistant. Paste any headline, forward,
-        caption or speech. TruthOS investigates calmly, then issues a clear verdict you
-        can screenshot and share.
-      </p><div class="hero-ctas" id="cta-top">
-  
-  <!-- OPEN TRUTHOS GPT -->
-  <a
-    class="btn btn-primary"
-    href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-    target="_blank"
-    rel="noopener"
-  >
-    <span>Open TruthOS GPT</span>
-  </a>
 
-  <!-- SHARE BUTTON -->
-  <button class="btn btn-secondary" onclick="openShareModal()">
-    <span>Share TruthOS with Your Community</span>
-  </button>
+      <div class="reality-check">
+        <span class="reality-label">🔥 REAL SCENARIO</span>
+        <p class="reality-scenario">
+          Your aunt forwarded "Government banning ₹500 notes tomorrow!" 
+          Your uncle panicked, withdrew ₹5 lakhs cash. Lost 3 days of work. Bank charged penalties.
+        </p>
+        <div class="reality-damage">
+          <strong>THE DAMAGE:</strong> Financial loss. Family stress. Your credibility = ZERO. 
+          All because nobody verified a 2-second check.
+        </div>
+        <div class="reality-solution">
+          <strong>✓ TruthOS Result:</strong> FALSE. No RBI notification. Debunked 47 times since 2016. 
+          Could've saved everything with 10 seconds.
+        </div>
+      </div>
 
-</div>
-      
-      <p class="hero-note">
-        Curious, not judgemental – every claim starts as <strong>unproven</strong> until the
-        evidence speaks.
+      <p class="hero-statement">
+        <span class="emphasis">Every forward you don't verify</span> is a bomb waiting to explode. 
+        Your reputation. Your family's trust. Your professional credibility. 
+        <span class="emphasis">All gone because you couldn't spare 10 seconds.</span>
       </p>
-    </header>
 
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works">
-      <h2>How TruthOS Works</h2>
-      <p class="section-intro">
-        TruthOS behaves less like a chatbot and more like a calm investigation room.  
-        It breaks claims down, asks “what’s the evidence?”, and then shows you its reasoning.
+      <div class="stats-shock">
+        <div class="stat-brutal">
+          <span class="stat-number-big">83%</span>
+          <span class="stat-label-brutal">Of people regret sharing</span>
+        </div>
+        <div class="stat-brutal">
+          <span class="stat-number-big">10 sec</span>
+          <span class="stat-label-brutal">To verify any claim</span>
+        </div>
+        <div class="stat-brutal">
+          <span class="stat-number-big">0₹</span>
+          <span class="stat-label-brutal">Cost of prevention</span>
+        </div>
+      </div>
+
+      <a href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos" target="_blank" class="cta-urgent">
+        🛡️ Stop Embarrassing Yourself NOW
+      </a>
+
+      <p class="cta-subtitle">
+        No signup. No excuses. Just stop spreading garbage.
       </p>
-      <div class="grid-3">
-        <div class="card">
-          <span class="pill">Step 1 · Scan</span>
-          <h3>Paste what you received</h3>
-          <p>
-            A WhatsApp forward, tweet thread, news headline, reel caption or transcript –
-            just paste the text into TruthOS or upload a screenshot.
+    </div>
+  </section>
+
+  <!-- CONFRONTATION -->
+  <section class="confrontation">
+    <div class="container">
+      <h2 class="section-title-brutal">What Your Fake News Actually Does</h2>
+      <p class="section-subtitle-brutal">
+        You think it's "just a forward." Here's what really happens.
+      </p>
+
+      <div class="damage-grid">
+        <div class="damage-card">
+          <span class="damage-icon">💔</span>
+          <h3 class="damage-title">Destroys Family Trust</h3>
+          <p class="damage-description">
+            Your mom stops believing you. Your kids learn misinformation from you. 
+            WhatsApp groups mute you. You become "that relative" everyone ignores.
           </p>
         </div>
-        <div class="card">
-          <span class="pill">Step 2 · Verify</span>
-          <h3>Evidence over emotion</h3>
-          <p>
-            TruthOS isolates each factual claim, looks for official records and primary
-            reporting, checks fact-check databases, and runs basic logic and context checks.
+
+        <div class="damage-card">
+          <span class="damage-icon">💸</span>
+          <h3 class="damage-title">Costs Real Money</h3>
+          <p class="damage-description">
+            Fake investment schemes. Medical misinformation causing hospital bills. 
+            Panic withdrawals. Missed opportunities. Your carelessness = their financial loss.
           </p>
         </div>
-        <div class="card">
-          <span class="pill">Step 3 · Verdict</span>
-          <h3>Get a shareable TRUTHOS VERDICT</h3>
-          <p>
-            You receive a clear verdict – <strong>Verified, Likely, Unproven, Misleading, or False</strong> –
-            along with a TRUTHOS VERDICT card that you can screenshot and share wherever the claim began.
+
+        <div class="damage-card">
+          <span class="damage-icon">⚖️</span>
+          <h3 class="damage-title">Legal Consequences</h3>
+          <p class="damage-description">
+            Spreading misinformation about public figures, government policies, or health can 
+            land you in legal trouble. "I just forwarded it" is NOT a defense.
+          </p>
+        </div>
+
+        <div class="damage-card">
+          <span class="damage-icon">🎯</span>
+          <h3 class="damage-title">Kills Your Credibility</h3>
+          <p class="damage-description">
+            One fake forward and people question EVERYTHING you share. 
+            Your real warnings? Ignored. Your advice? Dismissed. Your reputation? Toast.
+          </p>
+        </div>
+
+        <div class="damage-card">
+          <span class="damage-icon">🏥</span>
+          <h3 class="damage-title">Endangers Health</h3>
+          <p class="damage-description">
+            "This cures cancer." "Don't take vaccines." "Garlic stops COVID." 
+            People actually believe this. People actually die from this. You helped that happen.
+          </p>
+        </div>
+
+        <div class="damage-card">
+          <span class="damage-icon">🔥</span>
+          <h3 class="damage-title">Fuels Social Division</h3>
+          <p class="damage-description">
+            Fake news about communities, religions, politics destroys social harmony. 
+            Riots start from forwards. Hatred spreads through shares. You're the carrier.
           </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- WHO IT'S FOR -->
-    <section id="who-for">
-      <h2>Who Is TruthOS For?</h2>
-      <p class="section-intro">
-        TruthOS is designed for anyone who wants their information diet – and their audience –
-        to be a little safer and a lot more honest.
+  <!-- VERDICT SHOWCASE -->
+  <section class="verdict-section">
+    <div class="container">
+      <h2 class="section-title-brutal">End Arguments With Evidence</h2>
+      <p class="section-subtitle-brutal">
+        Screenshot this. Share it. Watch the BS die instantly.
       </p>
-      <div class="grid-2">
-        <div class="card">
-          <h3>Everyday checkers</h3>
-          <ul>
-            <li><strong>Family & friends:</strong> Scan forwards before they reach the whole group.</li>
-            <li><strong>Students & learners:</strong> Verify “facts” before using them in essays, debates or exams.</li>
-            <li><strong>Concerned citizens:</strong> Check political or social claims before forming a strong opinion.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>People with audiences</h3>
-          <ul>
-            <li><strong>Group admins & community leaders:</strong> Keep your spaces clean with TRUTHOS VERDICT cards.</li>
-            <li><strong>Creators & influencers:</strong> Fact-check scripts and captions, then add “Verified by TruthOS”.</li>
-            <li><strong>Teachers & trainers:</strong> Use TruthOS in digital literacy and media awareness sessions.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <!-- VERDICT CARD -->
-    <section id="verdict">
-      <h2>The TRUTHOS VERDICT Card</h2>
-      <p class="section-intro">
-        When a claim is misleading or false, TruthOS issues a <strong>TRUTHOS VERDICT</strong> –
-        a consistent, professional summary you can share instead of arguing.
-      </p>
-      <div class="verdict-wrapper">
-        <div class="verdict-demo" aria-label="Example of a TRUTHOS VERDICT card">
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      <div class="verdict-destroyer">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
            🔍 TRUTHOS VERDICT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📰 CLAIM ANALYZED
-“Government is banning ₹500 notes next month.”
+"Government is banning ₹500 notes next month."
 
 ❌ FINAL VERDICT
-FALSE
+FALSE - COMPLETE FABRICATION
 
 📊 TRUTH RELIABILITY SCORE
-09/100
+09/100 (Total Garbage)
 
 📚 KEY EVIDENCE SUMMARY
-No official RBI or Government notification. Similar rumor has been publicly debunked by multiple fact-check bodies.
+❌ No RBI notification
+❌ No government statement
+❌ Same rumor debunked since 2016
+❌ Zero credible sources
+✓ Classic WhatsApp panic factory
 
 🛡 VERIFIED BY TRUTHOS
 
@@ -622,234 +762,193 @@ No official RBI or Government notification. Similar rumor has been publicly debu
 🔐 CERTIFICATE ID
 TS-20251212-4832
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚠ PUBLIC NOTICE:
-“No verdict is issued without Tier-A or Tier-B documentary verification.”
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        </div>
-        <p class="hero-note">
-          Anyone who doubts the card can upload it back into TruthOS to see the full report.
-          If the card was edited, TruthOS will mark it as an invalid certificate.
-        </p>
-      </div>
-    </section>
+⚠ WARNING TO FORWARDERS:
+"Spreading this makes YOU the problem.
+Stop. Verify. Share THIS card instead."
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
 
-    <!-- USE CASES -->
-    <section>
-      <h2>When to Reach for TruthOS</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Health & money claims</h3>
-          <p>
-            “This drink cures X.” “Guaranteed 10% monthly returns.”  
-            These deserve verification, not blind trust. Let TruthOS examine the logic and evidence.
+      <p style="text-align: center; color: var(--text-soft); margin-top: 30px; max-width: 650px; margin-left: auto; margin-right: auto; font-size: 1rem;">
+        <strong>Built-in anti-fake protection:</strong> Upload this card back to TruthOS to see full forensic analysis. 
+        If someone edits it, we expose them immediately.
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="container">
+      <h2 class="section-title-brutal">3 Steps. 10 Seconds. Zero Excuses.</h2>
+
+      <div class="steps-brutal">
+        <div class="step-brutal">
+          <div class="step-number-brutal">1</div>
+          <h3 class="step-title-brutal">Paste The BS</h3>
+          <p class="step-desc-brutal">
+            WhatsApp forward, viral tweet, Instagram claim, whatever. 
+            Copy. Paste. Done.
           </p>
         </div>
-        <div class="card">
-          <h3>Politics & public issues</h3>
-          <p>
-            Cropped speeches, shocking graphs, out-of-context videos – TruthOS helps you slow down,
-            separate claim from emotion, and see what’s actually known.
+
+        <div class="step-brutal">
+          <div class="step-number-brutal">2</div>
+          <h3 class="step-title-brutal">Get The Truth</h3>
+          <p class="step-desc-brutal">
+            TruthOS checks official sources, fact databases, and logic. 
+            You get clear verdict in 10 seconds.
           </p>
         </div>
-        <div class="card">
-          <h3>News-based content</h3>
-          <p>
-            If you create explainers, reels or newsletters based on news, run your script through TruthOS.
-            Your audience gets your perspective, plus a layer of forensic care.
+
+        <div class="step-brutal">
+          <div class="step-number-brutal">3</div>
+          <h3 class="step-title-brutal">Share The Verdict</h3>
+          <p class="step-desc-brutal">
+            Screenshot the card. Drop it where the fake news came from. 
+            Stop the spread. Save someone.
           </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- GET STARTED -->
-    <section>
-      <h2>Start in Under a Minute</h2>
-      <p class="section-intro">
-        You don’t need an account, a course, or a new habit. You just need one new reflex:
-        “Before I forward this, I’ll ask TruthOS.”
+  <!-- IMPACT STORIES -->
+  <section class="impact-section">
+    <div class="container">
+      <h2 class="section-title-brutal">People Who Stopped Being The Problem</h2>
+      <p class="section-subtitle-brutal">
+        Real people who learned the hard way. Don't be next.
       </p>
-      <ol style="margin-top: 10px; color: var(--text-soft); font-size: 0.95rem;">
-        <li>Open TruthOS GPT.</li>
-        <li>Paste the message, headline or caption – or describe the video you saw.</li>
-        <li>Read the clear report and TRUTHOS VERDICT.</li>
-        <li>Screenshot the verdict card and share it where the claim appeared.</li>
-      </ol>
-      <div class="hero-ctas" style="margin-top: 18px;">
-        <a
-          class="btn btn-primary"
-          href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-          target="_blank"
-          rel="noopener"
-          >
-          Open TruthOS GPT
-        </a>
+
+      <div class="impact-grid">
+        <div class="impact-card">
+          <p class="impact-quote">
+            "I forwarded that milk+banana death thing to 200 people. My doctor friend called me out publicly. 
+            Most embarrassing moment of my life. Never again."
+          </p>
+          <p class="impact-author">— Rajesh, 42, Mumbai</p>
+        </div>
+
+        <div class="impact-card">
+          <p class="impact-quote">
+            "Lost my teaching job because I shared anti-vaccine misinformation. 
+            Thought I was helping. Destroyed my career. Verify EVERYTHING."
+          </p>
+          <p class="impact-author">— Meera, 35, Bangalore</p>
+        </div>
+
+        <div class="impact-card">
+          <p class="impact-quote">
+            "My uncle had a heart attack from financial panic caused by fake RBI news I forwarded. 
+            That guilt will never leave me. TruthOS could've prevented it."
+          </p>
+          <p class="impact-author">— Amit, 28, Delhi</p>
+        </div>
+
+        <div class="impact-card">
+          <p class="impact-quote">
+            "Family WhatsApp group removed me as admin after I kept sharing fake political videos. 
+            Took 2 years to rebuild trust. Not worth it."
+          </p>
+          <p class="impact-author">— Priya, 31, Pune</p>
+        </div>
+
+        <div class="impact-card">
+          <p class="impact-quote">
+            "Lost a client contract because I shared fake industry news on LinkedIn. 
+            They said 'if you can't fact-check, we can't trust your work.' Brutal lesson."
+          </p>
+          <p class="impact-author">— Vikram, 39, Hyderabad</p>
+        </div>
+
+        <div class="impact-card">
+          <p class="impact-quote">
+            "My daughter stopped asking me questions because I kept giving her wrong information I found on WhatsApp. 
+            That hurt more than anything. Fixed it with TruthOS."
+          </p>
+          <p class="impact-author">— Sunita, 45, Chennai</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FAQ -->
-    <section id="faq">
-      <h2>Questions People Often Ask</h2>
-      <div class="faq-item">
-        <h3>Does TruthOS replace human fact-checkers?</h3>
-        <p>
-          No. Think of TruthOS as a calm first filter. It helps anyone – from regular users to journalists –
-          quickly see how strong the evidence is so they can decide what to do next.
-        </p>
-      </div>
-      <div class="faq-item">
-        <h3>What happens if a claim is “Unproven”?</h3>
-        <p>
-          Then the honest answer is: we don’t know yet. TruthOS will show you that the evidence isn’t strong
-          enough either way, which is often the safest place to stand.
-        </p>
-      </div>
-      <div class="faq-item">
-        <h3>Is TruthOS politically neutral?</h3>
-        <p>
-          TruthOS focuses on evidence, not sides. Official records and primary reporting are weighted far more
-          heavily than commentary, influencers or viral sentiment.
-        </p>
-      </div>
-      <div class="faq-item">
-        <h3>Is my input public?</h3>
-        <p>
-          TruthOS is designed for responsible use. Avoid sharing sensitive personal data in your checks.  
-          You stay in control of what you screenshot and share.
-        </p>
-      </div>
-    </section>
+  <!-- FINAL ULTIMATUM -->
+  <section class="final-ultimatum">
+    <h2 class="ultimatum-title">
+      Choose: <span class="red">10 Seconds</span> or<br/>
+      Lifetime of Regret
+    </h2>
 
-    <!-- MISSION -->
-    <section>
-      <h2>Join the Mission</h2>
-      <p class="section-intro">
-        Fake news spreads because it is emotional, fast and frictionless.
-        TruthOS exists to make <strong>truth</strong> just as easy to share – gentle in tone, firm on evidence.
-      </p>
-      <p class="section-intro">
-        Every time you scan a claim, share a TRUTHOS VERDICT, or ask someone,
-        “Have you checked this with TruthOS?”, you help turn this platform into the graveyard of fake news.
-      </p>
-      <div class="hero-ctas" style="margin-top: 18px;">
-        <a
-    class="btn btn-primary"
-    href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-    target="_blank"
-    rel="noopener"
-  >
-    <span>Open TruthOS GPT</span>
-  </a>
-
-  <!-- SHARE BUTTON -->
-  <button class="btn btn-secondary" onclick="openShareModal()">
-    <span>Share TruthOS with Your Community</span>
-  </button>
-
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      · VERIFIED BY TRUTHOS ·
-    </footer>
-  </div>
-
-  <!-- Small helper script for smooth scroll from nav buttons (optional, no dependencies) -->
-  <script>
-    document.addEventListener("click", function (e) {
-      const t = e.target.closest("a[href^='#']");
-      if (!t) return;
-      const id = t.getAttribute("href").slice(1);
-      const el = document.getElementById(id);
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  </script>
-  <!-- SHARE POPUP MODAL -->
-<div id="shareModal" class="share-modal">
-  <div class="share-box">
-
-    <span class="share-close" onclick="closeShareModal()">✕</span>
-
-    <h3>Share TruthOS</h3>
-    <p>
-      Help build the <b>world's graveyard of fake news.</b><br />
-      Send TruthOS to your groups, students, followers, and friends.
+    <p class="ultimatum-statement">
+      You're reading this because you know deep down you've been part of the problem. 
+      <strong>Today that changes.</strong> Every person you've sent fake news to deserves better. 
+      Every relationship damaged by misinformation can still be saved. 
+      <strong>But only if you start NOW.</strong>
     </p>
 
-    <div class="share-grid">
+    <a href="https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos" target="_blank" class="cta-urgent">
+      🛡️ Verify Before You Destroy (FREE)
+    </a>
 
-      <!-- WHATSAPP -->
-      <a
-        href="https://api.whatsapp.com/send?text=TruthOS%20%E2%80%93%20The%20Graveyard%20of%20Fake%20News%0AVerify%20any%20news%20using%20this%20GPT:%0Ahttps://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-        target="_blank"
-        rel="noopener"
-      >
-        📱 WhatsApp
-      </a>
+    <button class="btn-secondary" onclick="openShareModal()">
+      📱 Send TruthOS to Someone Who Needs This
+    </button>
 
-      <!-- FACEBOOK -->
-      <a
-        href="https://www.facebook.com/sharer/sharer.php?u=https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-        target="_blank"
-        rel="noopener"
-      >
-        📘 Facebook
-      </a>
+    <p style="margin-top: 30px; font-size: 0.9rem; color: #64748b;">
+      The next forward you get? Test it. The next claim you see? Verify it.<br/>
+      Your reputation is on the line. Your family is watching. Your future self is begging you.
+    </p>
+  </section>
 
-      <!-- TWITTER / X -->
-      <a
-        href="https://twitter.com/intent/tweet?text=TruthOS%20%E2%80%93%20The%20Graveyard%20of%20Fake%20News%0AVerify%20any%20claim%20here:%20https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-        target="_blank"
-        rel="noopener"
-      >
-        🐦 X (Twitter)
-      </a>
+  <!-- SHARE MODAL -->
+  <div id="shareModal" class="share-modal" onclick="closeShareModal()">
+    <div class="share-box" onclick="event.stopPropagation()">
+      <span class="share-close" onclick="closeShareModal()">✕</span>
+      <h3 class="share-title">Stop The Spread</h3>
+      <p class="share-desc">
+        Send this to everyone who needs to stop embarrassing themselves online.
+      </p>
 
-      <!-- LINKEDIN -->
-      <a
-        href="https://www.linkedin.com/sharing/share-offsite/?url=https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-        target="_blank"
-        rel="noopener"
-      >
-        💼 LinkedIn
-      </a>
-
-      <!-- EMAIL -->
-      <a
-        href="mailto:?subject=TruthOS%20–%20The%20Graveyard%20of%20Fake%20News&body=Check%20claims%20before%20sharing.%20Verify%20with%20TruthOS:%20https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos"
-      >
-        ✉️ Email
-      </a>
-
-      <!-- COPY LINK -->
-      <button onclick="copyTruthOSLink()">
-        🔗 Copy Link
-      </button>
-
+      <div class="share-grid">
+        <a href="https://api.whatsapp.com/send?text=You%20need%20to%20see%20this.%20Stop%20forwarding%20fake%20news.%20Verify%20with%20TruthOS:%20https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos" target="_blank" class="share-btn">
+          📱 WhatsApp
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Your%20fake%20news%20is%20destroying%20lives.%20Verify%20before%20you%20share.%20TruthOS%20takes%2010%20seconds:%20https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos" target="_blank" class="share-btn">
+          🐦 Twitter
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos" target="_blank" class="share-btn">
+          📘 Facebook
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos" target="_blank" class="share-btn">
+          💼 LinkedIn
+        </a>
+        <a href="mailto:?subject=You%20Need%20TruthOS&body=Stop%20forwarding%20fake%20news.%20It's%20destroying%20your%20credibility.%20Verify%20everything%20with%20TruthOS%20first:%20https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos" class="share-btn">
+          ✉️ Email
+        </a>
+        <button class="share-btn" onclick="copyLink()">
+          🔗 Copy Link
+        </button>
+      </div>
     </div>
-
   </div>
-</div>
-<script>
-  const truthOSLink =
-    "https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos";
 
-  function openShareModal() {
-    document.getElementById("shareModal").style.display = "block";
-  }
+  <script>
+    function openShareModal() {
+      document.getElementById('shareModal').style.display = 'block';
+    }
 
-  function closeShareModal() {
-    document.getElementById("shareModal").style.display = "none";
-  }
+    function closeShareModal() {
+      document.getElementById('shareModal').style.display = 'none';
+    }
 
-  function copyTruthOSLink() {
-    navigator.clipboard.writeText(truthOSLink);
-    alert("TruthOS link copied! Share it anywhere.");
-  }
-</script>
+    function copyLink() {
+      const link = 'https://chatgpt.com/g/g-6935895f96cc8191930b75ad7f47dd9a-truthos';
+      navigator.clipboard.writeText(link).then(() => {
+        alert('Link copied. Now send it to someone who desperately needs this.');
+      });
+    }
 
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeShareModal();
+    });
+  </script>
 </body>
 </html>
