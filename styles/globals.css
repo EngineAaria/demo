@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* editorial paper background */
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  @apply bg-infinka-cream text-gray-900 font-body;
+  background-image: radial-gradient(ellipse at top left, rgba(61,10,90,0.02), transparent 20%);
+}
+
+/* Logo / hero */
+.hero-title {
+  font-family: "Playfair Display", serif;
+  color: #3D0A5A;
+}
+
+/* courtier chat bubble */
+.courtier {
+  background: linear-gradient(90deg, rgba(61,10,90,0.05), rgba(212,175,55,0.02));
+  border-left: 4px solid #D4AF37;
+  padding: 1rem;
+  border-radius: 12px;
+}
